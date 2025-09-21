@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introdução ao Git e GitHub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="progress-bar"></div>
+
+    <div class="container">
+        <header class="main-header">
+            <div class="logo-placeholder"><a href="cursos.html" title="Voltar à lista de cursos">Escola XYZ</a></div>
+        </header>
+
+        <h1 class="page-title">Introdução ao Git e GitHub</h1>
+
+        <main>
+            <section id="introducao">
+                <h2>O que é isso? Um "save game" para seus projetos!</h2>
+                <p>
+                    Imagine que você está criando um projeto (um texto, um site, um jogo). A cada mudança, você fica com medo de estragar algo, certo? <strong>Git</strong> é como um sistema de "save" superpoderoso no seu computador, que te deixa salvar "checkpoints" do seu trabalho. O <strong>GitHub</strong> é como uma "nuvem" online onde você guarda esses saves e pode compartilhar com amigos para trabalharem juntos.
+                </p>
+            </section>
+
+            <section id="git-vs-github">
+                <h2>Git vs. GitHub: Qual a Diferença?</h2>
+                <p>Este é o ponto que mais confunde iniciantes! É crucial entender a diferença:</p>
+                <ul>
+                    <li><strong>Git</strong>: É o <strong>programa</strong> que você instala no seu computador. Ele é a ferramenta que controla as versões e o histórico. Ele funciona 100% offline, sem precisar de internet.</li>
+                    <li><strong>GitHub</strong>: É um <strong>site</strong> (uma plataforma na internet). Ele é um serviço que hospeda (guarda) seus projetos que usam Git. É a "rede social" do seu código, permitindo backup e colaboração.</li>
+                </ul>
+                <div class="analogy">
+                    <p><strong>Analogia Final:</strong> Pense no <strong>Git</strong> como o Microsoft Word, o programa que você usa para escrever um documento. Pense no <strong>GitHub</strong> como o Google Drive, o serviço online onde você salva e compartilha seus documentos do Word.</p>
+                </div>
+            </section>
+            
+            <section id="git">
+                <h2>1. Git: A máquina do tempo no seu computador</h2>
+                <p>O Git funciona localmente, ou seja, só na sua máquina. Ele cria um histórico de todas as alterações que você faz nos seus arquivos. Se algo der errado, você pode simplesmente "voltar no tempo" para uma versão anterior que estava funcionando!</p>
+
+                <div class="analogy">
+                    <p><strong>Analogia:</strong> Pense no Git como o botão "Salvar" de um jogo. Cada vez que você salva, cria um ponto seguro. Se você perder a fase, pode voltar para o último save. O Git faz isso com o seu código.</p>
+                </div>
+                
+                <h3>Os 3 Comandos Mágicos para "Salvar o Jogo"</h3>
+                <p>Para criar um "checkpoint" (que chamamos de <strong>commit</strong>), você segue 3 passos:</p>
+                
+                <h4>Passo 1: `git add` - Separar o que vai ser salvo</h4>
+                <p>Este comando escolhe quais arquivos modificados você quer incluir no próximo save. Ele os move para um lugar chamado <strong>"Staging Area"</strong> (Área de Preparação).</p>
+                <p><strong>Mas por que esse passo extra?</strong> A Staging Area permite que você crie "saves" (commits) muito organizados. Imagine que você modificou 3 arquivos, mas apenas 2 deles estão relacionados a uma nova funcionalidade. Você pode usar `git add` apenas nesses 2 arquivos para criar um commit limpo e temático.</p>
+                <pre><span class="comment">-- Para adicionar um arquivo específico:</span>
+<span class="command">git add</span> <span class="param">nome_do_arquivo.txt</span>
+
+<span class="comment">-- Para adicionar TODOS os arquivos modificados de uma vez (use com cuidado!):</span>
+<span class="command">git add .</span></pre>
+                
+                <div class="playground" id="pg-add">
+                    <h4>Atividade Prática: Preparando um arquivo</h4>
+                    <p>Abaixo, simulamos que você tem um arquivo modificado. Clique no botão para simular o comando <code>git add index.html</code> e veja o que acontece.</p>
+                    <pre>Status do Git:
+  - index.html (modificado, não preparado)</pre>
+                    <button class="btn" data-output-text="Status do Git:&#10;  - index.html (modificado, preparado para commit)">Rodar `git add index.html`</button>
+                    <div class="output" aria-live="polite"></div>
+                </div>
+
+                <h4>Passo 2: `git commit` - Criar o "save" com uma descrição</h4>
+                <p>Este é o comando que realmente cria o checkpoint. A parte <code>-m</code> serve para você deixar uma mensagem explicando o que você mudou. Boas mensagens são super importantes!</p>
+                 <pre><span class="comment">-- 'Initial commit' é uma mensagem comum para o primeiro save.</span>
+<span class="command">git commit -m</span> <span class="param">"Adicionei o título da página inicial"</span></pre>
+                 
+                <h4>Passo 3: `git log` - Ver seu histórico de saves</h4>
+                 <p>Quer ver todos os checkpoints que você já criou? Use este comando.</p>
+                 <pre><span class="command">git log</span></pre>
+                 <p>A saída será algo parecido com isto, mostrando cada commit, seu autor e a mensagem:</p>
+                 <pre>commit a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0 (HEAD -> main)
+Author: Seu Nome <seuemail@exemplo.com>
+Date:   Mon Oct 26 20:00:00 2023 -0300
+
+    Adiciona o título da página inicial</pre>
+            </section>
+
+            <section id="github">
+                <h2>2. GitHub: A rede social dos seus projetos</h2>
+                <p>O GitHub é uma plataforma online que "hospeda" seus projetos que usam Git. Ele é o lugar onde a mágica do trabalho em equipe acontece. Além de ser um backup seguro, é lá que você pode mostrar seus projetos para o mundo!</p>
+                
+                 <div class="analogy">
+                    <p><strong>Analogia:</strong> Se o Git é o seu console de videogame, o GitHub é a rede online (como a PSN ou a Xbox Live) onde você pode guardar seus saves na nuvem e convidar amigos para jogar no mesmo mundo que você.</p>
+                </div>
+
+                <h3>Comandos para conversar com o GitHub</h3>
+                <p>Para conectar seu projeto local (Git) com o projeto online (GitHub), usamos alguns comandos chave:</p>
+                
+                <h4>`git clone` - Baixar um projeto pela primeira vez</h4>
+                <p>Viu um projeto legal no GitHub e quer uma cópia dele no seu computador? Você "clona" o projeto.</p>
+                <pre><span class="command">git clone</span> <span class="param">https://github.com/usuario/nome-do-projeto.git</span></pre>
+
+                <h4>`git push` - Enviar seus "saves" para a nuvem</h4>
+                <p>Depois de fazer alguns <strong>commits</strong> na sua máquina, você usa o <code>push</code> para enviar todas essas novidades para o GitHub. É como fazer o "upload" dos seus saves.</p>
+                 <pre><span class="comment">-- 'origin' é o nome padrão do seu repositório no GitHub.</span>
+<span class="comment">-- 'main' é o nome padrão da "linha do tempo" principal do seu projeto.</span>
+<span class="command">git push origin main</span></pre>
+
+                <h4>`git pull` - Baixar as novidades da nuvem</h4>
+                <p>Se um amigo seu fez alguma alteração no projeto e enviou para o GitHub, você usa o <code>pull</code> para baixar e atualizar o seu projeto local. É como fazer o "download" das atualizações.</p>
+                <pre><span class="command">git pull origin main</span></pre>
+            </section>
+            
+            <section id="desafio">
+                <h2>Desafio: Seu primeiro fluxo de trabalho!</h2>
+                <div class="desafio-container">
+                    <p>Você acabou de criar um arquivo HTML novo para o seu projeto e quer salvar essa alteração e enviá-la para o GitHub. Qual seria a sequência correta de comandos?</p>
+                    <p><strong>Sua missão:</strong> Ordene os 3 comandos que você usaria para completar a tarefa.</p>
+                    <button onclick="toggleAnswer(this)" class="btn" aria-controls="challenge-answer" aria-expanded="false">Ver Resposta</button>
+                    <div id="challenge-answer" style="display: none;">
+                        <h4>A sequência correta seria:</h4>
+                        <ol>
+                            <li><strong><code>git add .</code></strong> (ou <code>git add nome_do_arquivo.html</code>) para colocar o novo arquivo na "caixa de preparação".</li>
+                            <li><strong><code>git commit -m "Cria arquivo HTML inicial"</code></strong> para criar o "save" local com uma mensagem clara.</li>
+                            <li><strong><code>git push origin main</code></strong> para enviar seu novo save para o GitHub.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <section id="quiz" class="quiz-container">
+                <h2>Mini Quiz: Teste seu Raciocínio!</h2>
+                <form id="quiz-form">
+                    <div class="question">
+                        <p>1. Um desenvolvedor salva seu trabalho localmente com `git commit`. Sua equipe, que trabalha remotamente, consegue ver essas alterações no GitHub imediatamente? Por quê?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="a"> a) Sim, o commit sincroniza tudo automaticamente.</label>
+                            <label><input type="radio" name="q1" value="b"> b) Não, pois `git commit` é um save local. Ele precisaria usar `git push` para enviar as alterações.</label>
+                            <label><input type="radio" name="q1" value="c"> c) Sim, mas apenas se ele estiver conectado à internet.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="question">
+                        <p>2. Qual é a melhor analogia para o comando `git clone`?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="a"> a) Tirar uma foto da capa de um livro na biblioteca.</label>
+                            <label><input type="radio" name="q2" value="b"> b) Fazer uma fotocópia completa de um livro da biblioteca e levar para casa.</label>
+                            <label><input type="radio" name="q2" value="c"> c) Ler o livro na própria biblioteca, sem levá-lo.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="question">
+                        <p>3. Se Git é o sistema que cria e gerencia os "saves" (commits), qual é o papel principal do GitHub nessa relação?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="a"> a) Ser o único programa capaz de criar commits.</label>
+                            <label><input type="radio" name="q3" value="b"> b) Funcionar como um editor de código para alterar os arquivos.</label>
+                            <label><input type="radio" name="q3" value="c"> c) Ser uma plataforma para hospedar (guardar online) e compartilhar os repositórios Git.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="question">
+                        <p>4. Um arquivo foi modificado. Por que o Git utiliza um processo de dois passos (`git add` e depois `git commit`) em vez de um único comando "salvar"?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="a"> a) Para permitir que o desenvolvedor escolha precisamente quais alterações farão parte do próximo "save", criando commits mais organizados.</label>
+                            <label><input type="radio" name="q4" value="b"> b) É um processo histórico que não tem mais utilidade prática.</label>
+                            <label><input type="radio" name="q4" value="c"> c) Para tornar o processo mais lento e evitar erros.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                     <div class="question">
+                        <p>5. Você está trabalhando em uma nova funcionalidade e, de repente, seu código quebra completamente. Você se lembra que 2 horas atrás tudo funcionava. Como o Git, fundamentalmente, te ajuda nessa situação?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="a"> a) O Git impede que você escreva código com bugs.</label>
+                            <label><input type="radio" name="q5" value="b"> b) O Git permite que você "volte no tempo" para um commit anterior, onde o código estava estável, para comparar e corrigir o problema.</label>
+                            <label><input type="radio" name="q5" value="c"> c) O Git automaticamente corrige o bug para você.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="quiz-controls">
+                        <button type="button" class="btn" onclick="checkQuiz()">Verificar Respostas</button>
+                        <button type="button" class="btn btn-secondary" id="retake-quiz-btn" onclick="retakeQuiz()">Refazer Quiz</button>
+                    </div>
+                </form>
+                <div id="quiz-result" aria-live="polite"></div>
+            </section>
+
+            <section id="proximos-passos">
+                <h2>Para ir Além: Próximos Passos</h2>
+                <p>Agora que você entendeu o básico, que tal aprofundar seus conhecimentos?</p>
+                <ul>
+                    <li><strong>Explore o `git status`</strong>: Use este comando a todo momento! Ele é o seu melhor amigo para entender o que está acontecendo no seu repositório.</li>
+                    <li><strong>Leia a documentação oficial</strong>: O site do Git tem guias excelentes. Comece pelo <a href="https://git-scm.com/book/pt-br/v2/Come%C3%A7ando-O-B%C3%A1sico-do-Git" target="_blank">Básico do Git</a>.</li>
+                    <li><strong>Assista a um vídeo</strong>: O vídeo "Git e GitHub para Iniciantes" do canal Filipe Deschamps no YouTube é um clássico.</li>
+                </ul>
+            </section>
+        </main>
+
+        <div class="page-navigation">
+            <a href="index.html" class="btn btn-secondary">↩ Voltar ao Índice</a>
+            <a href="Aula02.html" class="btn">Próxima Aula →</a>
+        </div>
+
+        <footer>
+            <p>Aprender Git e GitHub é como aprender a colaborar em um documento do Google, mas para código. É uma habilidade poderosa para qualquer criador!</p>
+            <p><strong>Curiosidade:</strong> O Git foi criado por Linus Torvalds, a mesma pessoa que criou o sistema operacional Linux!</p>
+        </footer>
+    </div>
+
+    <script>
+        // Definição das respostas corretas para esta aula específica
+        const correctAnswers = {
+            q1: { answer: 'b', explanation: 'O `commit` salva as alterações apenas no repositório local (seu PC). Para que a equipe veja, é preciso "empurrar" (push) essas alterações para o repositório remoto (GitHub).' },
+            q2: { answer: 'b', explanation: 'Clonar (`git clone`) cria uma cópia de trabalho completa do projeto, incluindo todo o histórico de alterações, o que é muito mais poderoso do que apenas baixar os arquivos.' },
+            q3: { answer: 'c', explanation: 'O Git gerencia o histórico localmente, enquanto o GitHub provê a infraestrutura para hospedar esses repositórios online, permitindo backup e colaboração.' },
+            q4: { answer: 'a', explanation: 'A "Staging Area" (`git add`) é um passo intermediário que dá ao desenvolvedor controle total para agrupar alterações relacionadas em um único commit, mesmo que tenha modificado vários arquivos.' },
+            q5: { answer: 'b', explanation: 'O principal poder do Git é seu histórico. Cada commit é um ponto seguro. Se algo der errado, você pode analisar o histórico (`git log`) e reverter para uma versão estável.' }
+        };
+    </script>
+    <script src="script.js"></script>
+
+    <button id="back-to-top-btn" title="Voltar ao topo">↑</button>
+
+</body>
+</html>

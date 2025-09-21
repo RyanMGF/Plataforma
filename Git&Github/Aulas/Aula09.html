@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Montando seu Portfólio de Projetos no GitHub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="progress-bar"></div>
+
+    <div class="container">
+        <header>
+            <h1>Montando seu Portfólio de Projetos no GitHub</h1>
+            <a href="index.html" id="home-btn" title="Voltar ao início">🏠</a>
+            <button id="theme-toggle" title="Alterar tema"></button>
+        </header>
+
+        <nav id="toc-container" aria-labelledby="toc-heading">
+            <h3 id="toc-heading">Nesta Aula</h3>
+            <ul id="toc-list"></ul>
+        </nav>
+
+        <main>
+            <section id="introducao">
+                <h2>O que é um Portfólio no GitHub?</h2>
+                <p>
+                    Seu perfil no GitHub é muito mais do que um lugar para guardar código. É a sua <strong>vitrine de talentos</strong> para o mundo! Um bom portfólio mostra não apenas os projetos que você fez, mas também como você pensa, organiza suas ideias e colabora. É o seu currículo interativo como futuro(a) desenvolvedor(a).
+                </p>
+            </section>
+            
+            <section id="porque-github">
+                <h2>Por que o GitHub é o melhor lugar para seu portfólio?</h2>
+                <div class="analogy">
+                    <p><strong>Analogia:</strong> Se você fosse um artista, não guardaria suas melhores pinturas no porão, certo? Você as colocaria em uma galeria para que todos pudessem ver. O GitHub é a sua galeria de arte digital. Cada repositório é uma obra em exposição.</p>
+                </div>
+                <ul>
+                    <li><strong>É onde todos estão:</strong> Empresas, recrutadores e outros desenvolvedores usam o GitHub todos os dias.</li>
+                    <li><strong>Mostra, não apenas conta:</strong> Em vez de dizer "eu sei fazer um site", você pode mostrar o site funcionando e todo o código por trás dele.</li>
+                    <li><strong>Demonstra suas habilidades:</strong> Um perfil organizado com bons projetos mostra que você é cuidadoso(a), sabe se comunicar e trabalhar em equipe.</li>
+                    <li><strong>É 100% gratuito</strong> para projetos públicos!</li>
+                </ul>
+            </section>
+
+            <section id="readme-perfeito">
+                <h2>A Estrela do Show: O Arquivo README.md</h2>
+                <p>O <strong>README.md</strong> é a "página de rosto" de cada um dos seus projetos. É a primeira coisa que as pessoas veem. Um bom README pode fazer um projeto simples parecer incrível. Um README ruim pode fazer um projeto incrível parecer confuso.</p>
+
+                <h3>O que colocar em um bom README?</h3>
+                <ul>
+                    <li><strong>Título e Subtítulo:</strong> Um nome claro para o projeto e uma frase que o descreva.</li>
+                    <li><strong>Descrição Detalhada:</strong> Explique o que o projeto faz, qual problema ele resolve e por que você o criou.</li>
+                    <li><strong>Como Usar/Instalar:</strong> Dê o passo a passo para que outra pessoa possa rodar seu projeto no computador dela.</li>
+                    <li><strong>Tecnologias Utilizadas:</strong> Liste as linguagens e ferramentas que você usou (ex: HTML, CSS, JavaScript).</li>
+                    <li><strong>Visualização:</strong> A parte mais legal! Coloque um <strong>screenshot</strong> ou, melhor ainda, um <strong>GIF animado</strong> mostrando seu projeto em ação!</li>
+                </ul>
+                <div class="code-example">
+                    <h4>Template de README para Copiar e Colar</h4>
+                    <p>Use este modelo como ponto de partida para seus projetos. Basta copiar, colar e preencher as informações!</p>
+                    <pre><code># 🚀 Nome do Projeto
+
+> Um breve subtítulo de uma linha sobre o que o projeto faz.
+
+!GIF do Projeto
+
+## 📝 Sobre o Projeto
+Uma descrição mais detalhada sobre a motivação e o propósito do projeto. Explique qual problema ele resolve ou o que você aprendeu ao criá-lo.
+
+## 🛠️ Tecnologias Utilizadas
+- HTML5
+- CSS3
+- JavaScript
+
+## 🔗 Link para o Projeto
+- Veja o site no ar!
+
+## ⚙️ Como Rodar Localmente
+```bash
+# Clone o repositório
+$ git clone https://github.com/seu-usuario/seu-projeto.git
+# Entre na pasta do projeto
+$ cd seu-projeto
+# Abra o index.html no seu navegador
+```
+</code></pre>
+                </div>
+            </section>
+
+            <section id="destacando-projetos">
+                <h2>Organizando sua Vitrine: Fixando (Pin) seus Melhores Projetos</h2>
+                <p>Você pode ter dezenas de repositórios, mas quais são os seus melhores? O GitHub permite que você "fixe" (pin) até <strong>seis repositórios</strong> no topo do seu perfil. Eles serão a primeira coisa que qualquer visitante verá.</p>
+
+                <h3>Como fixar um repositório?</h3>
+                <ol>
+                    <li>Vá para a página do seu perfil no GitHub.</li>
+                    <li>Clique na aba "Repositories" (Repositórios).</li>
+                    <li>Encontre o projeto que você quer destacar e clique no <strong>ícone de alfinete (pin)</strong> ao lado dele.</li>
+                    <li>Você pode arrastar e reordenar seus projetos fixados como quiser!</li>
+                </ol>
+                <div class="code-example">
+                    <h4>Exemplo: Seção de Repositórios Fixados</h4>
+                    <p>No seu perfil, esta seção aparecerá com destaque, mostrando os cartões dos projetos que você escolheu. Cada cartão terá o nome do repositório, a descrição e as linguagens usadas.</p>
+                    <pre>+--------------------------------+  +--------------------------------+
+| 📌 meu-portfolio               |  | 📌 jogo-da-velha               |
+| Descrição do meu portfólio...  |  | Jogo da velha com JS...        |
+| 🔵 HTML  🟡 CSS  🟣 JavaScript   |  | 🟡 JavaScript  🔵 HTML          |
++--------------------------------+  +--------------------------------+</pre>
+                </div>
+            </section>
+            
+            <section id="github-pages">
+                <h2>Indo Além: Publique seu Site de Graça com o GitHub Pages!</h2>
+                <p>E se eu te dissesse que você pode hospedar um site (como um blog, portfólio ou a página de um projeto) de graça, diretamente de um repositório? Isso é o <strong>GitHub Pages</strong>! É a forma perfeita de dar vida aos seus projetos.</p>
+                <p>Basta criar um repositório com seus arquivos HTML, CSS e JavaScript, ir nas configurações dele, encontrar a seção "Pages" e ativar. O GitHub te dará um link público (<code>seu-usuario.github.io/nome-do-repo</code>) onde seu site estará no ar!</p>
+                <div class="code-example">
+                    <h4>Importante: Apenas para Sites Estáticos</h4>
+                    <p>O GitHub Pages é fantástico, mas ele só serve para hospedar sites "estáticos", ou seja, aqueles feitos com tecnologias que rodam no navegador, como <strong>HTML, CSS e JavaScript</strong>. Ele não consegue executar código de back-end (como Python, Java, PHP, etc.).</p>
+                </div>
+
+                <div class="playground" id="pg-pages">
+                    <h4>Atividade Prática: Ativando o GitHub Pages</h4>
+                    <p>Nas configurações de um repositório, você encontraria a seção "Pages". Qual opção você selecionaria para publicar o conteúdo da sua branch principal?</p>
+                    <button class="btn" data-output-text="Você selecionaria:&#10;Source: Deploy from a branch&#10;Branch: main, /(root)">Simular Ação</button>
+                    <div class="output" aria-live="polite"></div>
+                </div>
+            </section>
+
+            <section id="profile-readme">
+                <h2>Sua Arma Secreta: O README do Perfil</h2>
+                <p>O GitHub tem uma funcionalidade incrível chamada <strong>Profile README</strong>. É um repositório especial que funciona como a página inicial do seu perfil, permitindo que você crie um cartão de visitas totalmente personalizado com imagens, links, badges e o que mais sua criatividade permitir!</p>
+                <h3>Como criar o seu?</h3>
+                <ol>
+                    <li>Crie um novo repositório público com o <strong>mesmo nome exato</strong> do seu nome de usuário no GitHub.</li>
+                    <li>Marque a opção "Add a README file" durante a criação.</li>
+                    <li>Edite o arquivo `README.md` nesse novo repositório. Tudo que você colocar ali aparecerá com destaque no topo da sua página de perfil!</li>
+                </ol>
+            </section>
+
+            <section id="desafio">
+                <h2>Desafio: Crie um README Nota 10!</h2>
+                <div class="desafio-container">
+                    <p>Imagine que você acabou de criar um projeto de "Calculadora de Gorjetas" feito com HTML, CSS e JavaScript. O projeto permite que o usuário digite o valor da conta, escolha a porcentagem da gorjeta e veja o valor final.</p>
+                    <p><strong>Sua missão:</strong> Escreva um rascunho de um bom README para este projeto. O que você colocaria em cada seção para deixá-lo atrativo?</p>
+                    <button onclick="toggleAnswer(this)" class="btn" aria-controls="challenge-answer" aria-expanded="false">Ver Minha Sugestão</button>
+                    <div id="challenge-answer" style="display: none;">
+                        <h4>Uma ótima estrutura seria:</h4>
+                        <pre><code># Calculadora de Gorjetas 💸
+
+Uma calculadora simples e elegante para dividir a conta e calcular gorjetas.
+
+## Descrição
+Este projeto é uma ferramenta web que ajuda a calcular o valor final de uma conta, incluindo a gorjeta. Foi criado como um exercício prático para treinar manipulação do DOM com JavaScript.
+
+## Como Usar
+1. Clone o repositório.
+2. Abra o arquivo `index.html` no seu navegador.
+3. Insira o valor da conta, escolha a porcentagem e o número de pessoas.
+
+## Tecnologias Utilizadas
+- HTML5
+- CSS3
+- JavaScript
+
+## Visualização
+[Aqui eu colocaria um GIF da calculadora funcionando!]
+</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="quiz" class="quiz-container">
+                <h2>Mini Quiz: Teste seu Raciocínio!</h2>
+                <form id="quiz-form">
+                    <div class="question">
+                        <p>1. Dois desenvolvedores têm perfis no GitHub. O Perfil A tem 20 repositórios, a maioria sem README. O Perfil B tem 5 repositórios, todos com READMEs detalhados, GIFs de demonstração e links para o site funcionando. Qual perfil provavelmente causará uma impressão melhor em um recrutador e por quê?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="a"> a) Perfil A, porque a quantidade de projetos é mais importante.</label>
+                            <label><input type="radio" name="q1" value="b"> b) Perfil B, porque demonstra qualidade, organização e boa comunicação, que são mais valiosos que a quantidade.</label>
+                            <label><input type="radio" name="q1" value="c"> c) Ambos causam a mesma impressão.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="question">
+                        <p>2. Por que o arquivo `README.md` é considerado a "estrela do show" em um repositório?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="a"> a) Porque é o primeiro arquivo que aparece em ordem alfabética.</label>
+                            <label><input type="radio" name="q2" value="b"> b) Porque é o único arquivo que pode conter imagens.</label>
+                            <label><input type="radio" name="q2" value="c"> c) Porque é a primeira coisa que um visitante vê, servindo como a página inicial e o manual de instruções do projeto.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="question">
+                        <p>3. Qual é a principal vantagem de usar o GitHub Pages para um projeto de front-end em vez de apenas deixar os arquivos no repositório?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="a"> a) O GitHub Pages permite que as pessoas vejam o site funcionando em um link público, em vez de apenas verem o código.</label>
+                            <label><input type="radio" name="q3" value="b"> b) O GitHub Pages deixa o repositório mais seguro.</label>
+                            <label><input type="radio" name="q3" value="c"> c) O GitHub Pages é a única forma de usar JavaScript em um projeto.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="question">
+                        <p>4. Você tem 15 repositórios públicos. Por que a funcionalidade de "fixar" (pin) repositórios é tão importante para o seu portfólio?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="a"> a) Para esconder os repositórios que você não gosta.</label>
+                            <label><input type="radio" name="q4" value="b"> b) Para destacar seus 6 melhores projetos, direcionando a atenção dos visitantes para o que mais importa.</label>
+                            <label><input type="radio" name="q4" value="c"> c) Para arquivar projetos antigos.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="quiz-controls">
+                        <button type="button" class="btn" onclick="checkQuiz()">Verificar Respostas</button>
+                        <button type="button" class="btn btn-secondary" id="retake-quiz-btn" onclick="retakeQuiz()">Refazer Quiz</button>
+                    </div>
+                </form>
+                <div id="quiz-result" aria-live="polite"></div>
+            </section>
+        </main>
+
+        <section id="proximos-passos">
+            <h2>Para ir Além: Automatize seu Portfólio com GitHub Actions</h2>
+            <p>Imagine que toda vez que você envia uma nova versão do seu site para a branch `main`, o GitHub automaticamente o publica no GitHub Pages para você. Isso é possível com <strong>GitHub Actions</strong>!</p>
+            <ul>
+                <li><strong>O que é?</strong> É uma ferramenta de automação integrada ao GitHub. Você pode criar "fluxos de trabalho" (workflows) que rodam automaticamente em resposta a eventos, como um `push`.</li>
+                <li><strong>Como começar?</strong> Na aba "Actions" do seu repositório, o GitHub oferece modelos prontos para publicar em várias plataformas, incluindo o GitHub Pages. É um passo avançado, mas que demonstra um conhecimento muito valorizado no mercado.</li>
+            </ul>
+        </section>
+
+        <div class="page-navigation">
+            <a href="Aula08.html" class="btn btn-secondary">← Aula Anterior</a>
+            <a href="Aula10.html" class="btn">Próxima Aula →</a>
+        </div>
+
+        <footer>
+            <p>Seu portfólio é uma jornada, não um destino. Continue criando, aprendendo e mostrando ao mundo do que você é capaz!</p>
+            <p><strong>Curiosidade:</strong> O GitHub tem um "Profile README", um repositório especial (com o mesmo nome do seu usuário) cujo README aparece na página principal do seu perfil, como um grande cartão de visitas!</p>
+        </footer>
+    </div>
+
+    <script>
+        // Definição das respostas corretas para esta aula específica
+        const correctAnswers = {
+            q1: { answer: 'b', explanation: 'Qualidade e boa documentação (READMEs) são muito mais importantes para recrutadores do que a quantidade de projetos. Demonstra profissionalismo e cuidado.' },
+            q2: { answer: 'c', explanation: 'O README é renderizado na página principal do repositório, agindo como a porta de entrada para qualquer pessoa que queira entender seu projeto.' },
+            q3: { answer: 'a', explanation: 'O GitHub Pages fornece um link público, permitindo que qualquer pessoa interaja com seu projeto ao vivo, o que é muito mais impactante do que apenas ver o código.' },
+            q4: { answer: 'b', explanation: 'A função de "fixar" permite que você cure seu perfil, garantindo que seus melhores e mais relevantes projetos sejam a primeira coisa que um visitante veja.' }
+        };
+    </script>
+    <script src="script.js"></script>
+
+    <button id="back-to-top-btn" title="Voltar ao topo">↑</button>
+
+</body>
+</html>

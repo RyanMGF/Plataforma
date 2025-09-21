@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurando o Git e Criando sua Conta GitHub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="progress-bar"></div>
+
+    <div class="container">
+        <header>
+            <h1>Configurando o Git e Criando sua Conta GitHub</h1>
+            <a href="index.html" id="home-btn" title="Voltar ao início">🏠</a>
+            <button id="theme-toggle" title="Alterar tema"></button>
+        </header>
+
+        <nav id="toc-container" aria-labelledby="toc-heading">
+            <h3 id="toc-heading">Nesta Aula</h3>
+            <ul id="toc-list"></ul>
+        </nav>
+
+        <main>
+            <section id="introducao">
+                <h2>O que vamos fazer hoje?</h2>
+                <p>
+                    Antes de começarmos a usar o Git e o GitHub, precisamos garantir que tudo está configurado corretamente. Nesta aula, vamos passar por dois passos essenciais: criar sua conta gratuita no GitHub e configurar seu nome e e-mail no Git localmente.
+                </p>
+            </section>
+            
+            <section id="porque-terminal">
+                <h2>Por que usar o Terminal (Linha de Comando)?</h2>
+                <p>Para um iniciante, o terminal pode parecer assustador. Então, por que não usar apenas botões? A verdade é que <strong>todos os botões e interfaces visuais (como no VS Code) estão, por baixo dos panos, executando os mesmos comandos de texto que estamos aprendendo</strong>.</p>
+                <div class="analogy">
+                    <p><strong>Analogia:</strong> Aprender os comandos do terminal é como aprender a gramática de um idioma. Depois que você sabe a gramática, pode usar gírias e abreviações (as interfaces visuais) com muito mais confiança, pois entende o que elas realmente significam.</p>
+                </div>
+                <p>Aprender os comandos fundamentais te dá uma base sólida para entender o que realmente está acontecendo, não importa qual ferramenta visual você use no futuro.</p>
+            </section>
+
+            <section id="conta-github">
+                <h2>1. Criando sua Conta no GitHub</h2>
+                <p>O GitHub será a "casa online" dos seus projetos. É onde você guardará seus códigos, mostrará seu portfólio e colaborará com outros.</p>
+                <div class="analogy">
+                    <p><strong>Analogia:</strong> Criar uma conta no GitHub é como criar seu perfil em uma rede social profissional, como o LinkedIn. É o seu cartão de visitas no mundo do desenvolvimento.</p>
+                </div>
+                <h3>Passo a passo:</h3>
+                <ol>
+                    <li>Acesse <strong><a href="https://github.com/" target="_blank">github.com</a></strong>.</li>
+                    <li>Clique em "Sign up" (Inscrever-se).</li>
+                    <li>Siga as instruções: escolha um nome de usuário, forneça seu e-mail e crie uma senha.</li>
+                    <li><strong>Dica:</strong> Escolha um nome de usuário profissional! Algo como `seu-nome-sobrenome` é uma ótima opção.</li>
+                </ol>
+                <div class="code-example">
+                    <h4>Exemplo Prático: Escolhendo um Nome de Usuário</h4>
+                    <p>Um bom nome de usuário é fácil de lembrar e associar a você. Evite nomes muito informais ou difíceis de digitar.</p>
+                    <pre>Bons exemplos: `ana-silva`, `j-santos-dev`, `pedro-costa`
+Maus exemplos: `dark_lord_xXx_88`, `user1998234`, `fofinho123`</pre>
+                </div>
+            </section>
+
+            <section id="config-local">
+                <h2>2. Configurando sua Identidade no Git Local</h2>
+                <p>Depois de instalar o Git, você precisa se "apresentar" a ele. Cada vez que você salvar uma alteração (fizer um commit), o Git registrará quem foi o autor. Isso é crucial para o trabalho em equipe.</p>
+                <p>Você só precisa fazer isso <strong>uma vez</strong> em cada computador que usar.</p>
+                
+                <h3>Os Comandos de Configuração</h3>
+                <p>Abra seu terminal (ou Git Bash no Windows) e execute os dois comandos abaixo, substituindo pelos seus dados.</p>
+                <pre><span class="comment">-- Configura seu nome de usuário para todos os projetos neste PC</span>
+<span class="command">git config --global user.name</span> <span class="param">"Seu Nome Completo"</span>
+
+<span class="comment">-- Configura seu e-mail (use o mesmo que você cadastrou no GitHub!)</span>
+<span class="command">git config --global user.email</span> <span class="param">"seuemail@exemplo.com"</span></pre>
+
+                <h3>Verificando sua Configuração</h3>
+                <p>Para ter certeza de que tudo foi salvo corretamente, você pode verificar cada configuração individualmente:</p>
+                <pre><span class="comment"># Para ver o nome configurado</span>
+<span class="command">git config user.name</span>
+<span class="comment"># Para ver o e-mail configurado</span>
+<span class="command">git config user.email</span></pre>
+
+                <div class="playground" id="pg-config">
+                    <h4>Atividade Prática: Simule sua Configuração</h4>
+                    <p>Digite seu nome e e-mail abaixo para ver como os comandos seriam no terminal.</p>
+                    <textarea id="config-name" placeholder="Seu Nome Completo"></textarea>
+                    <textarea id="config-email" placeholder="seu.email@provedor.com"></textarea>
+                    <button class="btn" data-output-text="Comandos executados com sucesso!&#10;git config --global user.name 'Seu Nome'&#10;git config --global user.email 'seu.email@provedor.com'">Simular Configuração</button>
+                    <div class="output"></div>
+                </div>
+            </section>
+
+            <section id="desafio">
+                <h2>Desafio: Verificando a Configuração</h2>
+                <div class="desafio-container">
+                    <p>Você configurou seu e-mail globalmente com `git config --global user.email "meu-email-pessoal@email.com"`. Agora, para um projeto específico da faculdade, você precisa que os commits sejam associados ao seu e-mail acadêmico.</p>
+                    <p><strong>Sua missão:</strong> Como você configuraria um e-mail <strong>apenas para o repositório atual</strong>, sem alterar a configuração global?</p>
+                    <button onclick="toggleAnswer(this)" class="btn" aria-controls="challenge-answer" aria-expanded="false">Ver Resposta</button>
+                    <div id="challenge-answer" style="display: none;">
+                        <h4>O comando seria quase o mesmo, mas sem a flag `--global`:</h4>
+                        <pre><span class="command">git config user.email "meu-email-academico@faculdade.edu"</span></pre>
+                        <p>Quando você está dentro de um repositório, qualquer comando `git config` sem a flag `--global` se aplica <strong>apenas</strong> àquele repositório. Isso sobrescreve a configuração global para aquele projeto específico.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="quiz" class="quiz-container">
+                <h2>Mini Quiz: Teste seu Conhecimento!</h2>
+                <form id="quiz-form">
+                    <div class="question">
+                        <p>1. Por que é importante configurar seu `user.name` e `user.email` no Git?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="a"> a) Para que o Git possa te enviar e-mails com notificações.</label>
+                            <label><input type="radio" name="q1" value="b"> b) Para que cada commit que você fizer seja "assinado" com sua identidade, identificando o autor.</label>
+                            <label><input type="radio" name="q1" value="c"> c) É apenas um requisito para fazer login no GitHub pelo terminal.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="question">
+                        <p>2. O que a flag `--global` faz no comando `git config --global user.name "Seu Nome"`?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="a"> a) Envia sua configuração para o GitHub, tornando-a global na internet.</label>
+                            <label><input type="radio" name="q2" value="b"> b) Aplica essa configuração a todos os repositórios Git no seu computador, em vez de apenas ao atual.</label>
+                            <label><input type="radio" name="q2" value="c"> c) Permite que qualquer pessoa no mundo veja seu nome.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="question">
+                        <p>3. Você precisa ter uma conta no GitHub para usar o Git no seu computador?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="a"> a) Sim, o Git não funciona sem uma conta no GitHub.</label>
+                            <label><input type="radio" name="q3" value="b"> b) Não, o Git é um programa que funciona 100% localmente. O GitHub é apenas um serviço para hospedar seus repositórios online.</label>
+                            <label><input type="radio" name="q3" value="c"> c) Sim, mas apenas para projetos em equipe.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="question">
+                        <p>4. Ao criar sua conta no GitHub, por que é uma boa ideia usar o mesmo e-mail que você configurou no seu Git local?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="a"> a) Para que o GitHub possa ligar seus commits locais à sua conta online, mostrando sua foto de perfil ao lado deles.</label>
+                            <label><input type="radio" name="q4" value="b"> b) É apenas uma coincidência, não faz diferença.</label>
+                            <label><input type="radio" name="q4" value="c"> c) Para receber menos e-mails de spam.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                     <div class="question">
+                        <p>5. Se você esquecer de rodar `git config` e tentar fazer um commit, o que provavelmente acontecerá?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="a"> a) O Git usará "Anônimo" como autor.</label>
+                            <label><input type="radio" name="q5" value="b"> b) O Git dará um erro e pedirá para você se identificar com os comandos `git config`.</label>
+                            <label><input type="radio" name="q5" value="c"> c) O commit será feito, mas ficará invisível no histórico.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="quiz-controls">
+                        <button type="button" class="btn" onclick="checkQuiz()">Verificar Respostas</button>
+                        <button type="button" class="btn btn-secondary" id="retake-quiz-btn" onclick="retakeQuiz()">Refazer Quiz</button>
+                    </div>
+                </form>
+                <div id="quiz-result" aria-live="polite"></div>
+            </section>
+
+            <section id="proximos-passos">
+                <h2>Para ir Além: Conexão Segura com SSH</h2>
+                <p>Você configurou sua identidade, mas toda vez que usar `git push` ou `git pull` em um repositório privado, o GitHub pedirá sua senha. Para evitar isso, profissionais usam chaves SSH.</p>
+                <ul>
+                    <li><strong>O que é SSH?</strong> É um método de autenticação mais seguro que usa um par de chaves digitais (uma pública e uma privada) para provar sua identidade sem precisar de senhas.</li>
+                    <li><strong>Como configurar?</strong> O GitHub tem um <a href="https://docs.github.com/pt/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent" target="_blank">excelente guia passo a passo</a> para te ajudar a gerar e adicionar sua chave SSH.</li>
+                </ul>
+            </section>
+        </main>
+
+        <div class="page-navigation">
+            <a href="Aula01.html" class="btn btn-secondary">← Aula Anterior</a>
+            <a href="Aula03.html" class="btn">Próxima Aula →</a>
+        </div>
+
+        <footer>
+            <p>Com sua identidade configurada, você está pronto para deixar sua marca no universo do código!</p>
+            <p><strong>Curiosidade:</strong> O GitHub usa um sistema chamado "Gravatar" para associar seu e-mail à sua foto de perfil. É por isso que usar o mesmo e-mail é tão importante!</p>
+        </footer>
+    </div>
+
+    <script>
+        // Definição das respostas corretas para esta aula específica
+        const correctAnswers = {
+            q1: { answer: 'b', explanation: 'Cada commit é um registro histórico, e saber quem fez cada alteração é fundamental para a colaboração e para rastrear a origem de mudanças no código.' },
+            q2: { answer: 'b', explanation: 'A flag `--global` faz com que a configuração seja aplicada a todos os projetos Git no seu computador, evitando que você precise se identificar a cada novo projeto.' },
+            q3: { answer: 'b', explanation: 'Git é a ferramenta de linha de comando que gerencia o histórico no seu PC. GitHub é um serviço web (uma "rede social" para código) que hospeda repositórios Git.' },
+            q4: { answer: 'a', explanation: 'O GitHub usa o e-mail do commit para encontrar o perfil de usuário correspondente e exibir a foto correta. É a ponte entre sua ação local e sua identidade online.' },
+            q5: { answer: 'b', explanation: 'O Git exige uma identidade para criar um commit. Se não encontrar uma, ele interromperá o processo e exibirá uma mensagem de erro instruindo você a usar `git config`.' }
+        };
+    </script>
+    <script src="script.js"></script>
+
+    <button id="back-to-top-btn" title="Voltar ao topo">↑</button>
+
+</body>
+</html>

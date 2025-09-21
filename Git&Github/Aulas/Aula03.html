@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instalação, Configuração e Sincronização</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="progress-bar"></div>
+
+    <div class="container">
+        <header>
+            <h1>Instalação, Configuração e Sincronização</h1>
+            <a href="index.html" id="home-btn" title="Voltar ao início">🏠</a>
+            <button id="theme-toggle" title="Alterar tema"></button>
+        </header>
+
+        <main>
+            <nav id="toc-container" aria-labelledby="toc-heading">
+                <h3 id="toc-heading">Nesta Aula</h3>
+                <ul id="toc-list"></ul>
+            </nav>
+
+            <section id="introducao">
+                <h2>O pontapé inicial: Preparando suas ferramentas!</h2>
+                <p>
+                    Agora que você já sabe o que são o Git e o GitHub, é hora de colocar a mão na massa! Vamos instalar o Git no seu computador e aprender como manter seu trabalho sempre em dia entre a sua máquina (repositório local) e a nuvem do GitHub (repositório remoto). É como aprender a salvar seu progresso e carregar de onde parou!
+                </p>
+            </section>
+            
+            <section id="instalacao">
+                <h2>1. Instalando o Git no seu computador</h2>
+                <p>O primeiro passo é instalar o programa do Git. Ele é quem vai te dar os "superpoderes" de controle de versão através do terminal.</p>
+                <div class="analogy">
+                    <p><strong>Por que instalar?</strong> Lembre-se que o Git é o <strong>motor</strong> do controle de versão, e o GitHub é a <strong>garagem online</strong>. Você precisa do motor instalado no seu carro (computador) para que ele possa se mover e ir até a garagem.</p>
+                </div>
+                
+                <h3>Como instalar?</h3>
+                <ol>
+                    <li>Acesse o site oficial do Git: <strong><a href="https://git-scm.com/downloads" target="_blank">git-scm.com/downloads</a></strong>.</li>
+                    <li>O site geralmente detecta seu sistema operacional (Windows, Mac ou Linux) e oferece o download correto.</li>
+                    <li>Baixe o instalador e siga as instruções. Para a maioria dos usuários, as opções padrão são perfeitas. Não precisa ter medo de clicar em "Next"!</li>
+                </ol>
+                <div class="code-example">
+                    <h4>Exemplo Prático: O que você verá no site</h4>
+                    <p>A página de downloads do Git detectará seu sistema operacional (Windows, macOS, ou Linux/Unix) e oferecerá o instalador mais recente. Procure por um botão grande de download que geralmente diz algo como:</p>
+                    <pre><strong>Downloads for [Seu Sistema]</strong>
+Latest source Release: 2.xx.x</pre>
+                </div>
+
+                <h3>Como verificar se deu certo?</h3>
+                <p>Depois de instalar, abra seu terminal (ou Git Bash no Windows) e digite o seguinte comando:</p>
+                <pre><span class="command">git --version</span></pre>
+                <p>Se ele responder com algo como <code>git version 2.XX.X</code>, parabéns! O Git está instalado e pronto para ser usado!</p>
+            </section>
+
+            <section id="configuracao">
+                <h2>2. Sua primeira configuração: Colocando sua "etiqueta"</h2>
+                <p>Antes de começar a salvar, você precisa dizer ao Git quem você é. Isso é muito importante, pois cada "save" (commit) que você fizer terá sua assinatura. É como colocar seu nome no caderno.</p>
+                <div class="analogy">
+                    <p><strong>Analogia:</strong> Pense nisso como etiquetar sua mala antes de uma viagem. Se sua mala se perder, todos saberão que ela é sua. No Git, cada alteração precisa ter uma "etiqueta" com o nome do autor.</p>
+                </div>
+                <p>Abra o terminal e rode estes dois comandos, substituindo as informações pelas suas:</p>
+                
+                <pre><span class="comment">-- Configura seu nome de usuário</span>
+<span class="command">git config --global user.name</span> <span class="param">"Seu Nome Completo"</span>
+
+<span class="comment">-- Configura seu e-mail (use o mesmo do seu cadastro no GitHub!)</span>
+<span class="command">git config --global user.email</span> <span class="param">"seuemail@exemplo.com"</span></pre>
+                <p>Você só precisa fazer isso uma vez por computador!</p>
+                <div class="code-example">
+                    <h4>O que significa `--global`?</h4>
+                    <p>A flag <code>--global</code> aplica a configuração para <strong>todos</strong> os seus projetos Git neste computador. Se você precisar usar um e-mail diferente para um projeto específico (ex: um e-mail da faculdade), você pode rodar o mesmo comando <strong>sem</strong> a flag <code>--global</code> dentro da pasta daquele projeto. A configuração local sempre tem prioridade sobre a global.</p>
+                </div>
+
+                <div class="playground" id="pg-config">
+                    <h4>Atividade Prática: Configurando seu Nome</h4>
+                    <p>Digite seu nome no campo abaixo e clique em "Rodar" para simular o comando <code>git config</code> e ver como seria a saída (não há saída em caso de sucesso).</p>
+                    <textarea id="config-name" placeholder="Seu Nome Completo"></textarea>
+                    <button class="btn" data-output-text="Sucesso! Seu nome de usuário no Git foi configurado globalmente.">Rodar `git config`</button>
+                    <div class="output"></div>
+                </div>
+            </section>
+            
+            <section id="sincronizacao">
+                <h2>3. O Ciclo de Sincronização Diária</h2>
+                <p>Trabalhar com repositórios sincronizados segue um ritmo, um ciclo que se repete todos os dias. Entender esse ciclo é a chave para colaborar sem problemas.</p>
+                <div class="analogy">
+                    <p><strong>Analogia do Documento Compartilhado:</strong> Pense em um trabalho de escola no Google Docs.
+                    <br>1. Antes de começar a escrever, você <strong>atualiza a página (<code>git pull</code>)</strong> para ver o que seus amigos já fizeram.
+                    <br>2. Você <strong>escreve sua parte (trabalha nos arquivos)</strong>.
+                    <br>3. Você <strong>salva suas alterações (<code>git add</code> e <code>git commit</code>)</strong>.
+                    <br>4. Você <strong>garante que todos vejam sua parte (<code>git push</code>)</strong>.
+                    <br>E o ciclo recomeça!</p>
+                </div>
+                <div class="code-example">
+                    <h4>Diagrama do Ciclo de Trabalho</h4>
+                    <pre>1. git pull -> 2. Trabalhar nos arquivos -> 3. git add -> 4. git commit -> 5. git push
+^                                                                            |
+`--------------------------------- RECOMEÇA ---------------------------------`</pre>
+                </div>
+
+                <h3>Glossário Rápido: `origin` e `main`</h3>
+                <p>Você verá esses dois nomes o tempo todo. É vital saber o que são:</p>
+                <ul>
+                    <li><strong>`origin`</strong>: É o <strong>apelido padrão</strong> que o Git dá para o repositório remoto (a URL do seu projeto no GitHub). Pense nele como um contato salvo no seu celular. Em vez de digitar o número (a URL longa), você só digita o nome do contato (`origin`).</li>
+                    <li><strong>`main`</strong>: É o nome da <strong>linha do tempo principal</strong> do seu projeto. Antigamente era chamada de `master`, mas `main` é o padrão moderno.</li>
+                </ul>
+
+                <h3>`git push`: Empurrando suas mudanças para a nuvem</h3>
+                <p>Depois de fazer seu trabalho no computador (usando `git add` e `git commit`), você precisa "empurrar" (push) esses novos saves para o GitHub.</p>
+                <pre><span class="comment">-- Envia os commits do seu branch 'main' local para o remoto 'origin'</span>
+<span class="command">git push origin main</span></pre>
+                
+                <h3>`git pull`: Puxando as novidades da nuvem (O Passo Mais Importante!)</h3>
+                <p>Se um colega de equipe (ou você mesmo em outro computador) enviou atualizações para o GitHub, você precisa "puxar" (pull) essas mudanças para o seu repositório local antes de começar a trabalhar, para garantir que você está com a versão mais recente.</p>
+                <pre><span class="comment">-- Baixa as atualizações do remoto 'origin' e as une ao seu branch local 'main'</span>
+<span class="command">git pull origin main</span></pre>
+            </section>
+            
+            <section id="conflitos">
+                <h2>Bônus: O que é um Conflito de Merge?</h2>
+                <p>Às vezes, o Git fica confuso. Um <strong>conflito</strong> acontece quando você e outra pessoa alteram a <strong>mesma linha</strong> no mesmo arquivo. Quando você tenta dar `git pull`, o Git para e diz: "Ei, eu não sei qual versão manter! Me ajude a decidir."</p>
+                <p>Ele vai marcar o arquivo com símbolos estranhos. Imagine que você e um colega alteraram a cor de um título em um arquivo CSS:</p>
+                <pre>h1 {
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+  color: blue; /* Sua alteração */
+=======
+  color: red; /* Alteração do seu colega */
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; a1b2c3d4e5f6
+}
+                </pre>
+                <p><strong>Como resolver?</strong> Com calma! Abra o arquivo, apague as linhas que você não quer (incluindo os marcadores `<<<<`, `====`, `>>>>`), salve o arquivo e faça um novo commit para registrar a resolução do conflito.</p>
+            </section>
+            
+            <section id="desafio">
+                <h2>Desafio: Um dia de trabalho!</h2>
+                <div class="desafio-container">
+                    <p>Você chega na escola para trabalhar no projeto em grupo. Seu amigo já fez algumas alterações e as enviou para o GitHub. Depois, você trabalha na sua parte e cria novos arquivos.</p>
+                    <p><strong>Sua missão:</strong> Qual é a sequência de comandos que você deve usar para: 1) pegar as atualizações do seu amigo e 2) enviar as suas próprias atualizações para o GitHub?</p>
+                    <button onclick="toggleAnswer(this)" class="btn" aria-controls="challenge-answer" aria-expanded="false">Ver Resposta</button>
+                    <div id="challenge-answer" style="display: none;">
+                        <h4>A sequência ideal seria:</h4>
+                        <ol>
+                            <li><strong><code>git pull origin main</code></strong>: Primeiro, você sempre puxa as atualizações para garantir que está na versão mais recente.</li>
+                            <li><strong><code>git add .</code></strong>: Adiciona suas novas alterações.</li>
+                            <li><strong><code>git commit -m "Minha parte da tarefa"</code></strong>: Cria um save local com suas mudanças.</li>
+                            <li><strong><code>git push origin main</code></strong>: Envia tudo para o GitHub para que seu amigo possa ver.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <section id="quiz" class="quiz-container">
+                <h2>Mini Quiz: Teste seu Raciocínio!</h2>
+                <form id="quiz-form">
+                    <div class="question">
+                        <p>1. Você começa a trabalhar em um projeto de equipe. Seu colega, Carlos, enviou algumas alterações ontem à noite. Qual é o **primeiro comando Git** que você deve executar e **por quê**?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="a"> a) `git push`, para enviar meu progresso de ontem.</label>
+                            <label><input type="radio" name="q1" value="b"> b) `git pull`, para baixar as alterações do Carlos e evitar conflitos.</label>
+                            <label><input type="radio" name="q1" value="c"> c) `git commit`, para criar um ponto de save antes de começar.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="question">
+                        <p>2. Você acabou de instalar o Git em um novo computador. Ao tentar fazer seu primeiro `commit`, você recebe um erro pedindo para configurar sua identidade. Quais dois comandos resolveriam isso para TODOS os projetos futuros nesta máquina?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="a"> a) `git config user.name` e `git config user.email`</label>
+                            <label><input type="radio" name="q2" value="b"> b) `git config --global user.name` e `git config --global user.email`</label>
+                            <label><input type="radio" name="q2" value="c"> c) `git login` e `git password`</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                     <div class="question">
+                        <p>3. Qual comando é usado para ENVIAR seus commits para o GitHub?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="a"> a) `git pull`</label>
+                            <label><input type="radio" name="q3" value="b"> b) `git push`</label>
+                            <label><input type="radio" name="q3" value="c"> c) `git send`</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="question">
+                        <p>4. Um conflito de merge geralmente acontece quando...</p>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="a"> a) A internet está lenta.</label>
+                            <label><input type="radio" name="q4" value="b"> b) Duas pessoas alteram a mesma linha de código.</label>
+                            <label><input type="radio" name="q4" value="c"> c) Você esquece de dar `git add`.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                     <div class="question">
+                        <p>5. Se você só fizer `git commit` no seu PC, seus colegas verão suas alterações?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="a"> a) Sim, o commit é universal.</label>
+                            <label><input type="radio" name="q5" value="b"> b) Não, o commit é um save local. Eles só verão depois de um `git push`.</label>
+                            <label><input type="radio" name="q5" value="c"> c) Sim, depois de alguns minutos.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="quiz-controls">
+                        <button type="button" class="btn" onclick="checkQuiz()">Verificar Respostas</button>
+                        <button type="button" class="btn btn-secondary" id="retake-quiz-btn" onclick="retakeQuiz()">Refazer Quiz</button>
+                    </div>
+                </form>
+                <div id="quiz-result" aria-live="polite"></div>
+            </section>
+
+            <section id="proximos-passos">
+                <h2>Para ir Além: Ferramentas de Merge e `git fetch`</h2>
+                <p>Resolver conflitos no terminal pode ser intimidador. Felizmente, existem ferramentas para ajudar.</p>
+                <ul>
+                    <li><strong>Ferramentas Visuais de Merge:</strong> O VS Code tem uma interface visual incrível para resolver conflitos, mostrando as duas versões lado a lado e permitindo que você escolha qual manter com cliques de botão. Pesquise por "VS Code merge conflict" no YouTube para ver demonstrações.</li>
+                    <li><strong>Entenda `git fetch`:</strong> O comando `git pull` é um atalho para dois outros: `git fetch` (que apenas baixa as novidades, sem aplicá-las) e `git merge` (que as aplica). Aprender a usar `git fetch` te dá mais controle sobre quando e como as atualizações são integradas.</li>
+                </ul>
+            </section>
+        </main>
+
+        <div class="page-navigation">
+            <a href="Aula02.html" class="btn btn-secondary">← Aula Anterior</a>
+            <a href="Aula04.html" class="btn">Próxima Aula →</a>
+        </div>
+
+        <footer>
+            <p>Manter seus repositórios sincronizados é a base para uma colaboração tranquila e um trabalho seguro. É um hábito que vale ouro!</p>
+            <p><strong>Curiosidade:</strong> O comando `pull` é, na verdade, uma combinação de dois outros comandos: `git fetch` (que busca as novidades) e `git merge` (que as une ao seu trabalho).</p>
+        </footer>
+    </div>
+
+    <script>
+        // Definição das respostas corretas para esta aula específica
+        const correctAnswers = {
+            q1: { answer: 'b', explanation: 'A primeira regra da colaboração é sempre "puxar" (`pull`) as atualizações mais recentes para garantir que você está trabalhando na última versão do projeto, evitando conflitos.' },
+            q2: { answer: 'b', explanation: 'A flag `--global` aplica a configuração a todos os repositórios Git em seu computador. Sem ela, a configuração valeria apenas para o repositório atual.' },
+            q3: { answer: 'b', explanation: '`git push` é o comando para "empurrar" (enviar) seus commits locais para o repositório remoto.' },
+            q4: { answer: 'b', explanation: 'Um conflito ocorre quando o Git não sabe como mesclar automaticamente as alterações, o que geralmente acontece quando a mesma linha é editada por mais de uma pessoa.' },
+            q5: { answer: 'b', explanation: '`git commit` é uma ação local. As alterações só se tornam visíveis para outros após você usar `git push`.' }
+        };
+    </script>
+    <script src="script.js" defer></script>
+
+</body>
+</html>

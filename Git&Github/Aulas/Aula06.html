@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clonando um Repositório (O Jeito Fácil de Começar)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="progress-bar"></div>
+
+    <div class="container">
+        <header>
+            <h1>Clonando um Repositório (O Jeito Fácil de Começar)</h1>
+            <a href="index.html" id="home-btn" title="Voltar ao início">🏠</a>
+            <button id="theme-toggle" title="Alterar tema"></button>
+        </header>
+
+        <nav id="toc-container" aria-labelledby="toc-heading">
+            <h3 id="toc-heading">Nesta Aula</h3>
+            <ul id="toc-list"></ul>
+        </nav>
+
+        <main>
+            <section id="introducao">
+                <h2>O que é "clonar"?</h2>
+                <p>
+                    Até agora, aprendemos a criar um projeto do zero no nosso computador com <code>git init</code>. Mas e quando queremos trabalhar em um projeto que <strong>já existe</strong> no GitHub? É aí que entra o comando <strong>`git clone`</strong>. Clonar é, literalmente, fazer uma cópia completa de um repositório da internet para a sua máquina.
+                </p>
+            </section>
+            
+            <section id="porque-clonar">
+                <h2>Por que clonar um repositório?</h2>
+                <p>Clonar é uma das ações mais comuns que você fará com o Git. Geralmente, você clona por três motivos:</p>
+                <div class="analogy">
+                    <p><strong>Analogia:</strong> Pense no GitHub como uma grande biblioteca de projetos.
+                    <br>• Se você quer <strong>ler um livro (estudar um projeto)</strong>, você pega uma cópia emprestada (clona).
+                    <br>• Se você quer <strong>ajudar a escrever um novo capítulo (colaborar)</strong>, você também precisa de uma cópia (clona).
+                    <br>• Se você guardou seu livro na biblioteca e agora quer <strong>continuar escrevendo em casa (trabalhar no seu projeto)</strong>, você pega sua cópia de volta (clona).</p>
+                </div>
+                <ul>
+                    <li><strong>Para colaborar:</strong> É o primeiro passo para contribuir com o projeto de um amigo, da escola ou de uma empresa.</li>
+                    <li><strong>Para estudar:</strong> Você pode baixar o código-fonte de qualquer projeto público para ver como ele funciona.</li>
+                    <li><strong>Para trabalhar:</strong> Você pode clonar seu próprio repositório em um computador diferente para continuar seu trabalho.</li>
+                </ul>
+            </section>
+
+            <section id="clone-vs-init">
+                <h2>`git clone` vs. `git init`: Qual a diferença?</h2>
+                <p>Esta é uma dúvida muito comum, mas a diferença é fundamental:</p>
+                <ul>
+                    <li>Use <strong>`git init`</strong> quando você quer começar um <strong>projeto novo, do zero</strong>, em uma pasta que já existe no seu computador. Você é o criador do projeto.</li>
+                    <li>Use <strong>`git clone`</strong> quando você quer obter uma <strong>cópia de um projeto que já existe</strong> em um servidor remoto (como o GitHub). Você está se juntando a um projeto ou baixando-o para estudar.</li>
+                </ul>
+                <div class="analogy">
+                    <p><strong>Analogia:</strong> `git init` é como pegar uma folha de papel em branco para começar a desenhar. `git clone` é como ir a um museu e fazer uma cópia exata de uma pintura famosa para levar para casa.</p>
+                </div>
+            </section>
+
+            <section id="como-clonar">
+                <h2>O Guia Definitivo para Clonar um Repositório</h2>
+                <p>O processo é bem simples e se resume a encontrar o endereço do projeto e usar um único comando.</p>
+
+                <h3>Passo 1: Encontre o Repositório no GitHub</h3>
+                <p>Navegue até a página do projeto que você quer clonar. Por exemplo, um projeto de código aberto famoso ou o repositório do seu grupo.</p>
+
+                <h3>Passo 2: Copie a URL do Repositório</h3>
+                <p>Na página do repositório, procure por um botão verde brilhante escrito <strong>"<> Code"</strong>. Clique nele. Um menu vai aparecer, e a URL que você quer estará na aba <strong>HTTPS</strong>. Copie essa URL (geralmente há um botão para copiar ao lado).</p>
+                <img src="https://i.imgur.com/sS7L6kF.png" alt="Interface do GitHub destacando o botão verde 'Code' e a URL HTTPS para clonar um repositório." class="image-placeholder">
+                <div class="code-example">
+                    <h4>HTTPS vs. SSH</h4>
+                    <p>Você verá duas opções de URL: HTTPS e SSH.
+                    <br>• <strong>HTTPS:</strong> É a mais fácil para começar. Funciona em qualquer lugar, mas pode pedir sua senha do GitHub de vez em quando.
+                    <br>• <strong>SSH:</strong> É um método mais avançado e seguro que usa um par de chaves criptográficas. Depois de configurado, você não precisa mais digitar sua senha.
+                    <br>Para iniciantes, <strong>sempre prefira HTTPS</strong>.</p>
+                </div>
+
+                <h3>Passo 3: Abra seu Terminal</h3> 
+                <p>Abra o terminal (ou Git Bash no Windows). Navegue com o comando <code>cd</code> até a pasta onde você quer que o projeto seja salvo. Por exemplo, para salvar na sua Área de Trabalho, você pode digitar <code>cd Desktop</code>.</p>
+
+                <h3>Passo 4: Use o Comando `git clone`</h3>
+                <p>Agora, a mágica acontece! Digite <code>git clone</code> e cole a URL que você copiou do GitHub.</p>
+                <pre><span class="command">git clone</span> <span class="param">https://github.com/nome-do-usuario/nome-do-repositorio.git</span></pre>
+                <p>Aperte Enter. O Git vai começar a baixar todos os arquivos. Ao final, uma nova pasta com o nome do repositório aparecerá no seu computador!</p>
+                
+                <h3>O que o `clone` realmente faz? (A Mágica Acontece Aqui)</h3>
+                <p>O comando `git clone` é mais do que um simples download. Ele faz quatro coisas importantes de uma vez:</p>
+                <ol>
+                    <li>Cria uma nova pasta no seu computador com o nome do repositório.</li>
+                    <li>Baixa todos os arquivos e pastas da linha do tempo principal (`main`) do projeto.</li>
+                    <li>Baixa <strong>todo o histórico de commits</strong> (a pasta `.git` inteira).</li>
+                    <li><strong>Configura a conexão remota:</strong> Ele automaticamente cria o "apelido" `origin` apontando para a URL de onde você clonou. Você não precisa usar `git remote add`!</li>
+                </ol>
+            </section>
+            
+            <section id="desafio">
+                <h2>Desafio: Clone um Projeto Famoso!</h2>
+                <div class="desafio-container">
+                    <p>O Bootstrap é um dos frameworks de design mais famosos do mundo, e seu código é aberto para todos no GitHub. O repositório deles fica em <code>https://github.com/twbs/bootstrap</code>.</p>
+                    <p><strong>Sua missão:</strong> Qual seria o comando exato que você digitaria no seu terminal para baixar uma cópia completa do projeto Bootstrap para o seu computador?</p>
+                    <p><strong>Missão Bônus:</strong> Depois de clonar, qual comando você usaria para ver o histórico de commits do projeto?</p>
+                    <button onclick="toggleAnswer(this)" class="btn" aria-controls="challenge-answer" aria-expanded="false">Ver Resposta</button>
+                    <div id="challenge-answer" style="display: none;">
+                        <h4>O comando seria bem direto:</h4>
+                        <pre><span class="command">git clone</span> <span class="param">https://github.com/twbs/bootstrap.git</span></pre>
+                        <p><strong>Resposta Bônus:</strong> Depois de entrar na pasta com `cd bootstrap`, você usaria o comando <strong>`git log`</strong> para explorar o incrível histórico de desenvolvimento do projeto!</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="quiz" class="quiz-container">
+                <h2>Mini Quiz: Teste seus conhecimentos!</h2>
+                <form id="quiz-form">
+                    <div class="question">
+                        <p>1. O comando `git clone` serve para:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="a"> a) Criar um novo repositório vazio no seu computador.</label>
+                            <label><input type="radio" name="q1" value="b"> b) Fazer uma cópia de um repositório existente do GitHub para o seu computador.</label>
+                            <label><input type="radio" name="q1" value="c"> c) Enviar seus arquivos para o GitHub.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="question">
+                        <p>2. Onde você encontra a URL para clonar um repositório?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="a"> a) Nas configurações do seu perfil do GitHub.</label>
+                            <label><input type="radio" name="q2" value="b"> b) Clicando no botão verde "<> Code" na página do repositório.</label>
+                            <label><input type="radio" name="q2" value="c"> c) No rodapé da página do GitHub.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="question">
+                        <p>3. Depois de clonar um repositório, você precisa rodar `git init` dentro dele?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="a"> a) Sim, para iniciar o controle de versão.</label>
+                            <label><input type="radio" name="q3" value="b"> b) Não, um repositório clonado já é um repositório Git completo.</label>
+                            <label><input type="radio" name="q3" value="c"> c) Apenas se você for fazer alterações.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="question">
+                        <p>4. `git clone` e `git init` fazem a mesma coisa?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="a"> a) Sim, ambos iniciam um repositório.</label>
+                            <label><input type="radio" name="q4" value="b"> b) Não. `init` cria um repositório novo e vazio, enquanto `clone` copia um que já existe.</label>
+                            <label><input type="radio" name="q4" value="c"> c) Quase, mas `clone` é para projetos em equipe.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                     <div class="question">
+                        <p>5. Um repositório clonado já vem conectado ao repositório remoto (no GitHub)?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="a"> a) Sim, `git clone` configura a conexão automaticamente.</label>
+                            <label><input type="radio" name="q5" value="b"> b) Não, você sempre precisa usar `git remote add origin`.</label>
+                            <label><input type="radio" name="q5" value="c"> c) Apenas se o repositório for público.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                     <div class="question">
+                        <p>6. Qual comando do terminal é usado para mudar de pasta?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q6" value="a"> a) `change`</label>
+                            <label><input type="radio" name="q6" value="b"> b) `cd`</label>
+                            <label><input type="radio" name="q6" value="c"> c) `move`</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                     <div class="question">
+                        <p>7. Se você clonar um projeto, o que o Git cria no seu computador?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q7" value="a"> a) Apenas um atalho para o site do GitHub.</label>
+                            <label><input type="radio" name="q7" value="b"> b) Uma pasta com o nome do repositório contendo todos os arquivos e o histórico Git.</label>
+                            <label><input type="radio" name="q7" value="c"> c) Um arquivo compactado (.zip) com o projeto.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                     <div class="question">
+                        <p>8. Depois de clonar um projeto e seu colega fazer uma atualização, qual comando você usa para pegar essa novidade?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q8" value="a"> a) `git clone` de novo.</label>
+                            <label><input type="radio" name="q8" value="b"> b) `git pull`</label>
+                            <label><input type="radio" name="q8" value="c"> c) `git update`</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                     <div class="question">
+                        <p>9. A URL que começa com `https://` é do tipo:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q9" value="a"> a) SSH</label>
+                            <label><input type="radio" name="q9" value="b"> b) GitHub CLI</label>
+                            <label><input type="radio" name="q9" value="c"> c) HTTPS</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                     <div class="question">
+                        <p>10. O que significa "origin" em um repositório clonado?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q10" value="a"> a) Que é o seu projeto original.</label>
+                            <label><input type="radio" name="q10" value="b"> b) É o apelido padrão que o Git dá para a URL do repositório remoto de onde você clonou.</label>
+                            <label><input type="radio" name="q10" value="c"> c) Que é a primeira versão do projeto.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="quiz-controls">
+                        <button type="button" class="btn" onclick="checkQuiz()">Verificar Respostas</button>
+                        <button type="button" class="btn btn-secondary" id="retake-quiz-btn" onclick="retakeQuiz()">Refazer Quiz</button>
+                    </div>
+                </form>
+                <div id="quiz-result" aria-live="polite"></div>
+            </section>
+        </main>
+
+        <section id="proximos-passos">
+            <h2>Para ir Além: Contribuindo para Projetos (Fork)</h2>
+            <p>Você clonou um projeto para estudar, mas e se você encontrar um bug ou tiver uma ideia para uma nova funcionalidade? Você não pode simplesmente fazer `git push` para o repositório de outra pessoa. O fluxo de trabalho correto é:</p>
+            <ol>
+                <li><strong>Fork:</strong> Crie uma "bifurcação" (fork) do projeto no GitHub. Isso cria uma cópia do repositório na sua própria conta.</li>
+                <li><strong>Clone:</strong> Clone o <strong>seu fork</strong> para o seu computador.</li>
+                <li><strong>Commit & Push:</strong> Faça suas alterações, crie commits e envie (`push`) para o seu fork.</li>
+                <li><strong>Pull Request:</strong> No GitHub, abra um "Pull Request" (Pedido de Inclusão) do seu fork para o projeto original, propondo que suas alterações sejam incorporadas.</li>
+            </ol>
+        </section>
+
+        <div class="page-navigation">
+            <a href="Aula05.html" class="btn btn-secondary">← Aula Anterior</a>
+            <a href="Aula07.html" class="btn">Próxima Aula →</a>
+        </div>
+
+        <footer>
+            <p>Saber clonar repositórios abre as portas para o mundo do código aberto e da colaboração. Agora você pode explorar e participar de qualquer projeto!</p>
+            <p><strong>Curiosidade:</strong> A primeira vez que você clona um repositório grande, pode demorar um pouco. Mas da próxima vez que você usar `git pull`, o Git só vai baixar as pequenas diferenças, sendo muito mais rápido!</p>
+        </footer>
+    </div>
+
+    <script>
+        // Definição das respostas corretas para esta aula específica
+        const correctAnswers = {
+            q1: { answer: 'b', explanation: '`git clone` é usado especificamente para baixar e criar uma cópia local de um repositório que já existe em um servidor remoto como o GitHub.' },
+            q2: { answer: 'b', explanation: 'A URL de clone (seja HTTPS ou SSH) está sempre disponível no menu que aparece ao clicar no botão verde "<> Code".' },
+            q3: { answer: 'b', explanation: 'Clonar um repositório já baixa a pasta `.git` junto com todos os arquivos, o que significa que ele já é um repositório Git funcional. `git init` não é necessário.' },
+            q4: { answer: 'b', explanation: '`git init` cria um repositório do zero em uma pasta local, enquanto `git clone` copia um repositório remoto já existente para uma nova pasta local.' },
+            q5: { answer: 'a', explanation: 'A grande vantagem do `git clone` é que ele automaticamente configura o repositório remoto (com o apelido `origin`) para você, poupando o passo de usar `git remote add`.' },
+            q6: { answer: 'b', explanation: '`cd` é a abreviação de "change directory" (mudar diretório) e é o comando padrão em terminais para navegar entre pastas.' },
+            q7: { answer: 'b', explanation: 'O clone cria uma pasta com o nome do projeto, contendo uma cópia exata dos arquivos e da pasta oculta `.git`, que armazena todo o histórico.' },
+            q8: { answer: 'b', explanation: 'Depois que um repositório é clonado, `git pull` é o comando usado para baixar e mesclar quaisquer novas alterações feitas no repositório remoto.' },
+            q9: { answer: 'c', explanation: 'URLs que começam com `https://` usam o protocolo HTTPS, que é o método mais comum e fácil para clonar repositórios públicos.' },
+            q10: { answer: 'b', explanation: '`origin` é o nome padrão que o Git dá ao repositório remoto de onde o projeto foi clonado. É um atalho para a URL completa.' }
+        };
+    </script>
+    <script src="script.js"></script>
+
+    <button id="back-to-top-btn" title="Voltar ao topo">↑</button>
+
+</body>
+</html>

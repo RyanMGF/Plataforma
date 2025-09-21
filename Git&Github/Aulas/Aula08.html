@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criando um Repositório Local do Zero</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="progress-bar"></div>
+
+    <div class="container">
+        <header>
+            <h1>Criando um Repositório Local do Zero</h1>
+            <a href="index.html" id="home-btn" title="Voltar ao início">🏠</a>
+            <button id="theme-toggle" title="Alterar tema"></button>
+        </header>
+
+        <nav id="toc-container" aria-labelledby="toc-heading">
+            <h3 id="toc-heading">Nesta Aula</h3>
+            <ul id="toc-list"></ul>
+        </nav>
+
+        <main>
+            <section id="introducao">
+                <h2>O que vamos fazer hoje?</h2>
+                <p>
+                    Vamos dar o primeiro passo prático no mundo do Git! Aprenderemos a transformar uma pasta comum do seu computador em um <strong>repositório Git</strong>, uma verdadeira "pasta mágica" com o poder de registrar todo o histórico do seu projeto. Todo o trabalho hoje acontece <strong>100% no seu computador</strong>!
+                </p>
+            </section>
+            
+            <section id="o-que-e">
+                <h2>O que é um Repositório Local?</h2>
+                <p>Um repositório local nada mais é do que a pasta do seu projeto que está sendo "vigiada" pelo Git. É aqui que toda a mágica do controle de versão acontece antes de você pensar em enviar qualquer coisa para a internet (como o GitHub).</p>
+                <div class="analogy">
+                    <p><strong>Analogia:</strong> Pense no repositório local como o seu estúdio de criação particular. É a sua mesa de trabalho, onde você desenha, apaga, cria e experimenta. Ninguém vê sua bagunça, apenas o resultado final quando você decide "salvar" uma etapa importante.</p>
+                </div>
+                <h3>A pasta secreta <code>.git</code></h3>
+                <div class="code-example">
+                    <h4>O Cérebro da Operação: A Pasta `.git`</h4>
+                    <p>Quando você roda `git init`, o Git cria uma pasta oculta chamada <code>.git</code>. Essa pasta é o coração e o cérebro do seu repositório. Ela contém todo o histórico, todos os commits e todas as informações de versionamento. Se você apagar essa pasta, você perde todo o histórico do Git, e sua pasta volta a ser uma pasta comum. <strong>Nunca, jamais, apague ou edite arquivos dentro da pasta `.git` manualmente!</strong></p>
+                </div>
+            </section>
+
+            <section id="passo-a-passo">
+                <h2>Mão na Massa: Criando seu Repositório em 4 Passos</h2>
+
+                <h3>Passo 1: Crie uma nova pasta</h3>
+                <p>Primeiro, crie uma pasta normal em qualquer lugar do seu computador. Pode ser na Área de Trabalho ou em Documentos. Vamos chamá-la de <code>meu-projeto-incrivel</code>.</p>
+                
+                <h3>Passo 2: Abra o terminal na pasta</h3>
+                <p>Agora, você precisa "dizer" ao terminal para trabalhar dentro dessa pasta. Você pode fazer isso de duas formas:</p>
+                <ol>
+                    <li>Navegando com o comando <code>cd</code> (change directory). Ex: <code>cd Desktop/meu-projeto-incrivel</code>.</li>
+                    <li><strong>Dica:</strong> Em muitos sistemas, você pode clicar com o botão direito na pasta e selecionar "Abrir no Terminal" ou "Git Bash Here".</li>
+                </ol>
+
+                <h3>Passo 3: O Comando Mágico - <code>git init</code></h3>
+                <p>Com o terminal aberto na pasta correta, digite o comando que inicia tudo:</p>
+                <pre><span class="command">git init</span></pre>
+                <p>O terminal vai responder algo como "Initialized empty Git repository in...". Pronto! Sua pasta comum acabou de ganhar superpoderes. A pasta secreta <code>.git</code> foi criada e o Git já está de olho em tudo.</p>
+
+                <h3>Passo 4: O Ciclo de Trabalho Básico</h3>
+                <p>Agora que o repositório existe, vamos ver como salvar nosso progresso. Crie um arquivo simples dentro da pasta, como <code>ideias.txt</code>, e escreva algo nele.</p>
+                
+                <h3>Seu Melhor Amigo: `git status`</h3>
+                <p>Este é o comando mais importante para um iniciante. Use-o o tempo todo! Ele é o seu "GPS" e te mostra o que está acontecendo no repositório.</p>
+                <pre><span class="command">git status</span></pre>
+                <p>O Git vai te dizer que existe um "untracked file" (arquivo não rastreado): o <code>ideias.txt</code>. Isso significa que o Git vê o arquivo, mas ainda não está monitorando suas alterações.</p>
+                
+                <h3>Adicionando à "Área de Preparação" com `git add`</h3>
+                <p>Precisamos dizer ao Git para rastrear esse arquivo. Nós o adicionamos a uma área chamada "Staging Area" ou "Área de Preparação".</p>
+                <pre><span class="comment">-- Adiciona o arquivo específico</span>
+<span class="command">git add</span> <span class="param">ideias.txt</span></pre>
+                <p>Se você rodar `git status` de novo, verá que o arquivo agora está verde, na seção "Changes to be committed".</p>
+
+                <h3>Salvando o "Checkpoint" com `git commit`</h3>
+                <p>Agora que o arquivo está na área de preparação, podemos criar nosso primeiro "save" (commit). A flag <code>-m</code> permite que você deixe uma mensagem explicando o que foi feito.</p>
+                <pre><span class="command">git commit -m</span> <span class="param">"Criei o arquivo de ideias e adicionei o primeiro pensamento"</span></pre>
+                <p>Parabéns! Você acabou de criar seu primeiro commit em um repositório totalmente local!</p>
+
+                <h3>Vendo seu Histórico com `git log`</h3>
+                <p>Para ver o "save" que você acabou de criar, use o comando `git log`:</p>
+                <pre><span class="command">git log</span></pre>
+                <p>Ele mostrará um registro detalhado do seu commit, incluindo o autor, a data e a mensagem que você escreveu.</p>
+            </section>
+            
+            <section id="desafio">
+                <h2>Desafio: Organizando o Save!</h2>
+                <div class="desafio-container">
+                    <p>Dentro do seu repositório, você criou dois novos arquivos: <code>tarefas.txt</code> e <code>rascunho.txt</code>. Você já terminou a lista de tarefas, mas o rascunho ainda não está pronto.</p>
+                    <p><strong>Sua missão:</strong> Quais seriam os <strong>dois comandos</strong> exatos para criar um commit que salve <strong>apenas</strong> as mudanças do arquivo <code>tarefas.txt</code>?</p>
+                    <button onclick="toggleAnswer(this)" class="btn" aria-controls="challenge-answer" aria-expanded="false">Ver Resposta</button>
+                    <div id="challenge-answer" style="display: none;">
+                        <h4>A sequência correta seria:</h4>
+                        <ol>
+                            <li><strong><code>git add tarefas.txt</code></strong>: Você prepara APENAS o arquivo que está pronto. O <code>rascunho.txt</code> fica de fora.</li>
+                            <li><strong><code>git commit -m "Adiciona lista de tarefas iniciais"</code></strong>: Você cria o commit, que conterá apenas o arquivo que você adicionou no passo anterior.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <section id="quiz" class="quiz-container">
+                <h2>Mini Quiz: Teste seus conhecimentos!</h2>
+                <form id="quiz-form">
+                    <div class="question">
+                        <p>1. Qual comando transforma uma pasta comum em um repositório Git?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="a"> a) `git start`</label>
+                            <label><input type="radio" name="q1" value="b"> b) `git local`</label>
+                            <label><input type="radio" name="q1" value="c"> c) `git init`</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="question">
+                        <p>2. Qual é o nome da pasta oculta que o Git cria para guardar o histórico?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="a"> a) `.git`</label>
+                            <label><input type="radio" name="q2" value="b"> b) `.history`</label>
+                            <label><input type="radio" name="q2" value="c"> c) `.github`</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="question">
+                        <p>3. O comando `git status` serve para:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="a"> a) Salvar as alterações.</label>
+                            <label><input type="radio" name="q3" value="b"> b) Ver o que foi modificado e o que está pronto para ser salvo.</label>
+                            <label><input type="radio" name="q3" value="c"> c) Enviar o código para a internet.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="question">
+                        <p>4. O que o comando `git add arquivo.txt` faz?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="a"> a) Cria um novo arquivo chamado `arquivo.txt`.</label>
+                            <label><input type="radio" name="q4" value="b"> b) Salva permanentemente as mudanças no `arquivo.txt`.</label>
+                            <label><input type="radio" name="q4" value="c"> c) Adiciona o `arquivo.txt` à "área de preparação" para o próximo commit.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                     <div class="question">
+                        <p>5. Qual comando efetivamente "salva" as mudanças preparadas, criando um ponto no histórico?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="a"> a) `git save`</label>
+                            <label><input type="radio" name="q5" value="b"> b) `git commit`</label>
+                            <label><input type="radio" name="q5" value="c"> c) `git add`</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                     <div class="question">
+                        <p>6. Para que serve a flag `-m` no comando `git commit`?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q6" value="a"> a) Para adicionar uma mensagem descrevendo o que foi alterado.</label>
+                            <label><input type="radio" name="q6" value="b"> b) Para mover o arquivo para outra pasta.</label>
+                            <label><input type="radio" name="q6" value="c"> c) Para marcar o commit como "muito importante".</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                     <div class="question">
+                        <p>7. Um repositório local está automaticamente conectado ao GitHub?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q7" value="a"> a) Sim, o `git init` já faz a conexão.</label>
+                            <label><input type="radio" name="q7" value="b"> b) Não, um repositório local existe apenas no seu computador até que você o conecte a um remoto.</label>
+                            <label><input type="radio" name="q7" value="c"> c) Sim, mas apenas se você tiver internet.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                     <div class="question">
+                        <p>8. Se você apagar a pasta `.git`, o que acontece?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q8" value="a"> a) Nada, ela é recriada automaticamente.</label>
+                            <label><input type="radio" name="q8" value="b"> b) Você perde todo o histórico do Git, e sua pasta volta a ser uma pasta comum.</label>
+                            <label><input type="radio" name="q8" value="c"> c) Você apaga todos os arquivos do seu projeto.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                     <div class="question">
+                        <p>9. Depois de fazer um `git commit`, as suas alterações estão visíveis para seus colegas no GitHub?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q9" value="a"> a) Sim, o commit envia tudo para a nuvem.</label>
+                            <label><input type="radio" name="q9" value="b"> b) Não, o commit é um "save" local. Você ainda precisa usar `git push` para enviar.</label>
+                            <label><input type="radio" name="q9" value="c"> c) Apenas se eles estiverem na mesma rede Wi-Fi.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                     <div class="question">
+                        <p>10. Qual é a ordem correta do fluxo de trabalho básico no Git local?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q10" value="a"> a) `git commit`, depois `git add`.</label>
+                            <label><input type="radio" name="q10" value="b"> b) `git add`, depois `git commit`.</label>
+                            <label><input type="radio" name="q10" value="c"> c) `git init`, `git commit`, `git add`.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="quiz-controls">
+                        <button type="button" class="btn" onclick="checkQuiz()">Verificar Respostas</button>
+                        <button type="button" class="btn btn-secondary" id="retake-quiz-btn" onclick="retakeQuiz()">Refazer Quiz</button>
+                    </div>
+                </form>
+                <div id="quiz-result" aria-live="polite"></div>
+            </section>
+        </main>
+        
+        <section id="proximos-passos">
+            <h2>Para ir Além: Visualizando o Histórico de Forma Inteligente</h2>
+            <p>O comando `git log` padrão pode ser muito verboso. Para uma visualização mais limpa e útil do seu histórico, experimente este comando poderoso:</p>
+            <pre><code>git log --oneline --graph --all --decorate</code></pre>
+            <p>Ele mostra cada commit em uma única linha (`--oneline`), desenha um gráfico de texto das branches (`--graph`) e mostra todas as branches (`--all`), não apenas a atual. É uma ótima maneira de ter uma visão geral do seu projeto.</p>
+        </section>
+
+        <div class="page-navigation">
+            <a href="Aula07.html" class="btn btn-secondary">← Aula Anterior</a>
+            <a href="Aula09.html" class="btn">Próxima Aula →</a>
+        </div>
+
+        <footer>
+            <p>Dominar o fluxo de trabalho local é o alicerce para usar o Git como um profissional. Parabéns por criar seu primeiro repositório!</p>
+            <p><strong>Curiosidade:</strong> A pasta <code>.git</code> contém todo o seu banco de dados de objetos - uma cópia de cada versão de cada arquivo que você já salvou!</p>
+        </footer>
+    </div>
+
+    <script>
+        // Definição das respostas corretas para esta aula específica
+        const correctAnswers = {
+            q1: { answer: 'c', explanation: '`git init` é o comando fundamental para inicializar um novo repositório Git em uma pasta, criando o subdiretório `.git`.' },
+            q2: { answer: 'a', explanation: 'A pasta `.git` é o "cérebro" do repositório, contendo todo o banco de dados de objetos e o histórico. Ela é oculta para evitar modificações acidentais.' },
+            q3: { answer: 'b', explanation: '`git status` é seu principal comando de diagnóstico. Ele informa o estado do seu diretório de trabalho e da staging area.' },
+            q4: { answer: 'c', explanation: '`git add` move as alterações do diretório de trabalho para a staging area, preparando-as para serem incluídas no próximo commit.' },
+            q5: { answer: 'b', explanation: '`git commit` é o comando que pega o que está na staging area e cria um novo "save" (snapshot) permanente no histórico do Git.' },
+            q6: { answer: 'a', explanation: 'A flag `-m` significa "message" e permite que você forneça uma mensagem de commit diretamente na linha de comando, o que é essencial para descrever a alteração.' },
+            q7: { answer: 'b', explanation: 'Um repositório local é completamente independente. A conexão com um repositório remoto (como no GitHub) é um passo explícito que deve ser feito com `git remote add`.' },
+            q8: { answer: 'b', explanation: 'Apagar a pasta `.git` remove todo o histórico e a configuração do Git, transformando a pasta de volta em um diretório comum. Os arquivos de trabalho não são afetados.' },
+            q9: { answer: 'b', explanation: 'O `commit` é uma operação puramente local. Para que outros vejam suas alterações, você precisa enviá-las para o repositório remoto compartilhado usando `git push`.' },
+            q10: { answer: 'b', explanation: 'O fluxo de trabalho padrão é: 1. Modificar arquivos. 2. Adicionar as alterações desejadas à staging area (`git add`). 3. Criar um commit a partir da staging area (`git commit`).' }
+        };
+    </script>
+    <script src="script.js"></script>
+
+    <button id="back-to-top-btn" title="Voltar ao topo">↑</button>
+
+</body>
+</html>

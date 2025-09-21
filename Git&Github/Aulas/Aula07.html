@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publicando um Projeto Local no GitHub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="progress-bar"></div>
+
+    <div class="container">
+        <header>
+            <h1>Publicando um Projeto Local no GitHub</h1>
+            <a href="index.html" id="home-btn" title="Voltar ao início">🏠</a>
+            <button id="theme-toggle" title="Alterar tema"></button>
+        </header>
+
+        <nav id="toc-container" aria-labelledby="toc-heading">
+            <h3 id="toc-heading">Nesta Aula</h3>
+            <ul id="toc-list"></ul>
+        </nav>
+
+        <main>
+            <section id="introducao">
+                <h2>Do Local para o Global</h2>
+                <p>
+                    Já sabemos como criar um projeto secreto no nosso computador (um repositório local). Agora, vamos aprender a criar uma <strong>vitrine pública</strong> para ele na internet usando o GitHub! O objetivo é pegar um projeto que só existe na sua máquina e colocá-lo online para que o mundo inteiro possa ver seu trabalho.
+                </p>
+            </section>
+            
+            <section id="passo-a-passo">
+                <h3>Passo 1: Crie um Repositório VAZIO no GitHub</h3>
+                <p>Após fazer login no GitHub, procure por um botão <strong>"+"</strong> no canto superior direito da tela, ou um botão verde <strong>"New"</strong> (Novo) no seu painel principal. Ambos te levarão para a página de criação.</p>
+                <p>Preencha o nome e a descrição do seu projeto. O mais importante vem agora:</p>
+                <div class="code-example">
+                    <h4>A Regra de Ouro: Crie um Repositório Vazio!</h4>
+                    <p>Ao publicar um projeto que já existe no seu PC, é <strong>crucial</strong> que o repositório no GitHub seja criado completamente vazio. Isso evita conflitos de histórico.</p>
+                    <pre>Initialize this repository with:
+[ ] Add a README file
+[ ] Add .gitignore
+[ ] Choose a license</pre>
+                    <p><strong>Deixe todas essas caixas desmarcadas!</strong> Clique em "Create repository" para criar uma "caixa" vazia, pronta para receber seu projeto.</p>
+                </div>
+            </section>
+
+            <section id="conectando">
+                <h2>Passo 2: Conectando e Enviando seu Projeto Local</h2>
+                <p>Após criar o repositório vazio, o GitHub vai te mostrar uma página com instruções. Nós vamos seguir a opção: <strong>"...ou envie um repositório existente da linha de comando"</strong>.</p>
+
+                <h3>O que é um "Remote"?</h3>
+                <p>Antes de usar os comandos, vamos entender o conceito. Um <strong>"remote"</strong> é simplesmente um apelido que o Git usa para se referir a uma URL de um repositório na internet. É um atalho.</p>
+                <div class="analogy">
+                    <p><strong>Analogia:</strong> Pense no seu celular. Você não digita o número de telefone do seu amigo toda vez que quer ligar. Você salva o número com um nome, como "João". No Git, a URL do seu repositório no GitHub é o número de telefone, e o apelido que damos a ela (geralmente <strong>`origin`</strong>) é o nome do contato.</p>
+                </div>
+
+                <h3>Os 3 Comandos Mágicos</h3>
+                <h4>Comando 1: Adicionando o Contato Remoto</h4>
+                <pre><span class="comment"># Aponta seu repositório local para o endereço remoto no GitHub</span>
+<span class="command">git remote add origin https://github.com/SEU-USUARIO/meu-projeto-web.git</span></pre>
+                <p>Este comando cria o "contato" chamado `origin` e o associa à URL do seu repositório no GitHub.</p>
+                
+                <h4>Comando 2: Renomeando a Linha do Tempo Principal</h4>
+                <pre><span class="comment"># Garante que sua branch principal se chama 'main'</span>
+<span class="command">git branch -M main</span></pre>
+                <p>Isso apenas garante que o nome da sua linha de trabalho principal é `main`, que é o padrão usado hoje em dia.</p>
+                
+                <h4>Comando 3: O Grande Envio!</h4>
+                <pre><span class="comment"># Envia seus commits da branch 'main' local para o remoto 'origin'</span>
+<span class="command">git push -u origin main</span></pre>
+                <p>Este é o comando que efetivamente "liga" para o contato `origin` e envia seus commits para o GitHub. A opção <code>-u</code> faz uma conexão mais forte, para que da próxima vez você só precise digitar <code>git push</code>.</p>
+                <p>Depois de rodar esses comandos, atualize a página do seu repositório no GitHub. Seus arquivos estarão lá!</p>
+            </section>
+            
+            <section id="desafio">
+                <h2>Desafio: Planejando o Repositório Perfeito!</h2>
+                <div class="desafio-container">
+                    <p>Você criou um projeto local de um diário de viagens (pasta `diario-viagem`), já fez o primeiro commit e agora quer publicá-lo em um repositório PÚBLICO no GitHub. A URL do seu novo repositório vazio é <code>https://github.com/seu-nome/diario-viagem.git</code>.</p>
+                    <p><strong>Sua missão:</strong> Qual é o comando que você usa para <strong>conectar</strong> o seu repositório local ao remoto e qual é o comando para <strong>enviar</strong> seu trabalho pela primeira vez?</p>
+                    <button onclick="toggleAnswer(this)" class="btn" aria-controls="challenge-answer" aria-expanded="false">Ver Resposta</button>
+                    <div id="challenge-answer" style="display: none;">
+                        <h4>Os dois comandos principais seriam:</h4>
+                        <ol>
+                            <li><strong>Para conectar:</strong><br> <code>git remote add origin https://github.com/seu-nome/diario-viagem.git</code></li>
+                            <li><strong>Para enviar:</strong><br> <code>git push -u origin main</code></li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <section id="quiz">
+                <h2>Mini Quiz: Teste seus conhecimentos!</h2>
+                <form id="quiz-form">
+                    <div class="question">
+                        <p>1. Por que, ao conectar um repositório local já existente, é crucial criar um repositório remoto **vazio** no GitHub (sem README ou .gitignore)?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="a"> a) Para evitar que os históricos de commits (o seu local e o do GitHub) entrem em conflito, já que ambos teriam um "primeiro commit" diferente.</label>
+                            <label><input type="radio" name="q1" value="b"> b) Porque um repositório vazio é mais leve e rápido de conectar.</label>
+                            <label><input type="radio" name="q1" value="c"> c) Porque o GitHub não permite conectar a repositórios que já tenham arquivos.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="question">
+                        <p>2. Você rodou `git remote add origin [URL]`. O que exatamente aconteceu neste momento? Seus arquivos foram enviados para o GitHub?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="a"> a) Sim, o comando já envia os arquivos.</label>
+                            <label><input type="radio" name="q2" value="b"> b) Não, o comando apenas "anotou" o endereço do repositório remoto. Nenhuma transferência de dados ocorreu ainda.</label>
+                            <label><input type="radio" name="q2" value="c"> c) Sim, mas apenas o último commit foi enviado.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="question">
+                        <p>3. Qual é o propósito da flag `-u` no comando `git push -u origin main`?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="a"> a) Significa "urgente" e faz o upload ser mais rápido.</label>
+                            <label><input type="radio" name="q3" value="b"> b) Significa "undo" e permite desfazer o push caso algo dê errado.</label>
+                            <label><input type="radio" name="q3" value="c"> c) Significa "set-upstream" e cria um vínculo permanente entre sua branch local `main` e a remota, permitindo usar apenas `git push` no futuro.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="question">
+                        <p>4. Você tenta rodar `git remote add origin [URL]` mas recebe um erro: `fatal: remote origin already exists.`. O que isso significa e como você resolveria?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="a"> a) Significa que a URL está errada. Você deve tentar com outra URL.</label>
+                            <label><input type="radio" name="q4" value="b"> b) Significa que o apelido `origin` já está em uso. Você poderia remover o antigo (`git remote rm origin`) ou adicionar com um novo nome.</label>
+                            <label><input type="radio" name="q4" value="c"> c) Significa que o GitHub está fora do ar. Você deve tentar mais tarde.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                     <div class="question">
+                        <p>5. Qual é a sequência lógica correta para publicar um projeto que você acabou de criar em sua máquina?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="a"> a) `git remote add` -> `git push` -> `git init` -> `git commit`</label>
+                            <label><input type="radio" name="q5" value="b"> b) `git init` -> `git add` -> `git commit` -> `git remote add` -> `git push`</label>
+                            <label><input type="radio" name="q5" value="c"> c) `git push` -> `git commit` -> `git add` -> `git init`</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="quiz-controls">
+                        <button type="button" class="btn" onclick="checkQuiz()">Verificar Respostas</button>
+                        <button type="button" class="btn btn-secondary" id="retake-quiz-btn" onclick="retakeQuiz()">Refazer Quiz</button>
+                    </div>
+                </form>
+                <div id="quiz-result" aria-live="polite"></div>
+            </section>
+        </main>
+        
+        <section id="proximos-passos">
+            <h2>Para ir Além: Gerenciando seus Remotes</h2>
+            <p>O que acontece se você errar a URL ou quiser mudar o nome do seu remote? O Git te dá comandos para gerenciar isso.</p>
+            <ul>
+                <li><strong>Ver seus remotes:</strong> O comando <code>git remote -v</code> lista todos os "contatos" remotos que seu repositório conhece, mostrando suas URLs.</li>
+                <li><strong>Mudar uma URL:</strong> Se você precisar atualizar o endereço de um remote, use <code>git remote set-url origin NOVA_URL_AQUI</code>.</li>
+                <li><strong>Renomear um remote:</strong> Para mudar o apelido de `origin` para `github`, por exemplo, use <code>git remote rename origin github</code>.</li>
+            </ul>
+        </section>
+
+        <div class="page-navigation">
+            <a href="Aula06.html" class="btn btn-secondary">← Aula Anterior</a>
+            <a href="Aula08.html" class="btn">Próxima Aula →</a>
+        </div>
+
+        <footer>
+            <p>Parabéns! Criar um repositório é o primeiro passo para compartilhar suas ideias com o mundo e construir um portfólio incrível.</p>
+            <p><strong>Curiosidade:</strong> O mascote do GitHub é um "Octocat", uma mistura de um polvo (octopus) com um gato (cat), e existem centenas de versões dele criadas pela comunidade!</p>
+        </footer>
+    </div>
+
+    <script>
+        // Definição das respostas corretas para esta aula específica
+        const correctAnswers = {
+            q1: { answer: 'a', explanation: 'Se o repositório remoto já tivesse um commit (criado pelo README), e seu repositório local também tivesse um commit inicial, os históricos seriam diferentes e o Git se recusaria a fazer o push para evitar sobrescrever o histórico.' },
+            q2: { answer: 'b', explanation: '`git remote add` apenas cria um "atalho" ou "ponte". A transferência de dados (upload) só acontece quando você executa `git push`.' },
+            q3: { answer: 'c', explanation: 'A flag `-u` (ou `--set-upstream`) estabelece um rastreamento. Isso diz ao Git que sua branch `main` local corresponde à branch `main` no `origin`, simplificando futuros comandos `push` e `pull`.' },
+            q4: { answer: 'b', explanation: 'Este erro indica que o apelido `origin` já está sendo usado para apontar para alguma URL. Você pode remover o antigo para adicionar o novo ou simplesmente usar um apelido diferente, como `github`.' },
+            q5: { answer: 'b', explanation: 'O fluxo é: 1. Iniciar o Git localmente (`init`). 2. Criar um save local (`add`, `commit`). 3. Conectar ao remoto (`remote add`). 4. Enviar o save local para o remoto (`push`).' }
+        };
+    </script>
+    <script src="script.js"></script>
+
+    <button id="back-to-top-btn" title="Voltar ao topo">↑</button>
+
+</body>
+</html>

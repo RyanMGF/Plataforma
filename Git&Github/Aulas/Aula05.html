@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usando Git na sua IDE: O Jeito Visual!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="progress-bar"></div>
+
+    <div class="container">
+        <header>
+            <h1>Usando Git na sua IDE: O Jeito Visual!</h1>
+            <a href="index.html" id="home-btn" title="Voltar ao início">🏠</a>
+            <button id="theme-toggle" title="Alterar tema"></button>
+        </header>
+
+        <main>
+            <nav id="toc-container" aria-labelledby="toc-heading">
+                <h3 id="toc-heading">Nesta Aula</h3>
+                <ul id="toc-list"></ul>
+            </nav>
+
+            <section id="introducao">
+                <h2>Adeus, terminal? Olá, botões!</h2>
+                <p>
+                    Até agora, usamos o Git através de comandos no terminal. Isso é super poderoso, mas não é o único jeito! A maioria dos programadores usa o Git integrado ao seu <strong>IDE (Ambiente de Desenvolvimento Integrado)</strong>. Pense no IDE como um editor de texto com superpoderes, e um desses poderes é usar o Git com botões e menus!
+                </p>
+            </section>
+            
+            <section id="o-que-e-ide">
+                <h2>O que é um IDE e por que usá-lo com Git?</h2>
+                <p>Um IDE, como o popular <strong>Visual Studio Code (VS Code)</strong>, é um programa que junta várias ferramentas para facilitar a vida de quem programa: editor de código, depurador e, claro, integração com o Git.</p>
+                <div class="analogy">
+                    <p><strong>Analogia:</strong> Usar o Git no terminal é como dirigir um carro com câmbio manual. Você tem controle total, mas precisa saber o que está fazendo. Usar o Git em um IDE é como dirigir um carro automático: ele faz muito do trabalho pesado por você, tornando a viagem mais suave e visual.</p>
+                </div>
+                <h3>Vantagens:</h3>
+                <ul>
+                    <li><strong>Visualização Clara:</strong> Você vê quais arquivos modificou, quais linhas adicionou (em verde) ou removeu (em vermelho) diretamente no editor.</li>
+                    <li><strong>Menos Comandos para Decorar:</strong> As operações mais comuns (`add`, `commit`, `push`) viram cliques de botão.</li>
+                    <li><strong>Fluxo de Trabalho Rápido:</strong> Você não precisa ficar trocando de janela entre seu código e o terminal.</li>
+                </ul>
+            </section>
+
+            <section id="terminal-vs-gui">
+                <h2>Terminal vs. Interface Gráfica (GUI): Qual é o melhor?</h2>
+                <p>A resposta é: <strong>os dois!</strong> Profissionais de verdade usam uma combinação de ambos, aproveitando o melhor de cada um.</p>
+                <ul>
+                    <li><strong>Use a GUI para...</strong> tarefas do dia a dia, como fazer commits, ver rapidamente quais arquivos foram alterados (diffs visuais) e sincronizar com o GitHub. É rápido e visual.</li>
+                    <li><strong>Use o Terminal para...</strong> tarefas complexas, como reverter commits antigos, resolver conflitos difíceis ou automatizar processos. O terminal te dá poder e controle total.</li>
+                </ul>
+                <p>Ao aprender os comandos do terminal primeiro, você entende a "mágica" por trás dos botões, o que te torna um desenvolvedor muito mais completo e confiante.</p>
+            </section>
+
+            <section id="vs-code">
+                <h2>O Git no Visual Studio Code: Um Tour Rápido</h2>
+                <p>Vamos usar o VS Code como nosso exemplo, pois é um dos mais usados e sua integração com Git é fantástica e já vem de fábrica!</p>
+
+                <div class="playground" id="pg-vscode">
+                    <h4>Atividade Prática: Navegando na IDE</h4>
+                    <p>No VS Code, a aba de Controle de Código-Fonte é geralmente a terceira na barra lateral esquerda. Tente encontrá-la (o ícone parece uma bifurcação). O que acontece se você clicar nela em um projeto que não tem um repositório Git iniciado?</p>
+                    <button class="btn" data-output-text="O VS Code geralmente mostra um botão 'Initialize Repository', convidando você a rodar `git init` com um clique!">Ver Simulação</button>
+                    <div class="output"></div>
+                </div>
+
+                <div class="code-example">
+                    <h4>Dicionário Visual: Botões vs. Comandos</h4>
+                    <p>Para ajudar a conectar os mundos, aqui está um resumo do que cada ação visual faz no terminal:</p>
+                    <pre><strong>Ação no VS Code</strong>               ->  <strong>Comando Equivalente no Terminal</strong>
+-----------------------------------------------------------------------
+Clicar no `+` ao lado de um arquivo  ->  `git add nome-do-arquivo`
+Clicar no `✓` (após digitar msg)   ->  `git commit -m "Sua mensagem"`
+Clicar em "Sincronizar Alterações"   ->  `git pull` e depois `git push`
+Ver linhas verdes/azuis no editor  ->  `git diff` (mostra as diferenças)</pre>
+                </div>
+
+                <h3>1. A Aba "Source Control" (Controle do Código-Fonte)</h3>
+                <p>Este é o seu centro de comando do Git. É o terceiro ícone na barra lateral esquerda (parece uma bifurcação). Quando você modifica qualquer arquivo em um projeto que é um repositório Git, ele aparece aqui.</p>
+                <div class="code-example">
+                    <h4>Exemplo: Painel Source Control</h4>
+                    <pre>SOURCE CONTROL
+> Changes (2)
+  M index.html
+  M style.css
+</pre>
+                    <p>A letra 'M' ao lado dos arquivos indica que eles foram <strong>M</strong>odificados desde o último commit.</p>
+                </div>
+
+                <h3>2. Fazendo o `git add` (Preparando as Mudanças)</h3>
+                <p>Na aba Source Control, todos os arquivos que você modificou aparecem em uma lista chamada "Changes" (Alterações). Para adicionar um arquivo à Staging Area (o palco da nossa foto), basta clicar no <strong>ícone de "+"</strong> que aparece ao lado do nome do arquivo.</p>
+                <p>Isso move o arquivo para uma nova seção chamada "Staged Changes" (Alterações Preparadas). É o equivalente visual de <code>git add nome-do-arquivo</code>.</p>
+                <div class="code-example">
+                    <h4>Exemplo: Preparando um Arquivo (Staging)</h4>
+                    <pre>SOURCE CONTROL
+> Staged Changes (1)
+  M index.html
+> Changes (1)
+  M style.css
+</pre>
+                    <p>Aqui, apenas `index.html` foi preparado e será incluído no próximo commit. `style.css` continua modificado, mas fora do "palco".</p>
+                </div>
+
+                <h3>3. Fazendo o `git commit` (Tirando a Foto)</h3>
+                <p>Acima da lista de arquivos, há uma caixa de texto escrito "Message". É aí que você escreve sua mensagem de commit! Depois de escrever, basta clicar no <strong>ícone de ✓ (checkmark/check)</strong> no topo.</p>
+                <p>Isso é o equivalente de <code>git commit -m "Sua mensagem aqui"</code>. Simples assim!</p>
+
+                <h3>4. Sincronizando com o GitHub (`push` e `pull`)</h3>
+                <p>Na parte inferior esquerda da janela do VS Code, na barra de status azul, você verá o nome do seu branch (ex: `main`) e um ícone de nuvem ou setas circulares com números. Este é o botão de <strong>Sincronizar Alterações</strong>.</p>
+                <p>Clicar nele vai executar um `git pull` (para baixar novidades) seguido de um `git push` (para enviar suas novidades). Ele mantém seu repositório local e remoto em perfeita harmonia!</p>
+                <div class="code-example">
+                    <h4>Exemplo: Barra de Status</h4>
+                    <pre>[...outros ícones...]  main*  ↑ 1 ↓ 0  [...outros ícones...]</pre>
+                    <p>A indicação `↑ 1` significa que você tem 1 commit local para enviar (push). `↓ 0` significa que não há commits novos no remoto para baixar (pull).</p>
+                </div>
+            </section>
+            
+            <section id="desafio">
+                <h2>Desafio: Operação Visual!</h2>
+                <div class="desafio-container">
+                    <p>Você acabou de fazer duas coisas no seu projeto dentro do VS Code:</p>
+                    <ol>
+                        <li>Adicionou uma nova imagem na pasta <code>/img</code>.</li>
+                        <li>Corrigiu um erro de digitação no arquivo <code>index.html</code>.</li>
+                    </ol>
+                    <p><strong>Sua missão:</strong> Descreva os passos que você faria, <strong>usando apenas a interface do VS Code</strong>, para criar um único commit contendo essas duas alterações e depois enviá-lo para o GitHub.</p>
+                    <button onclick="toggleAnswer(this)" class="btn" aria-controls="challenge-answer" aria-expanded="false">Ver Resposta</button>
+                    <div id="challenge-answer" style="display: none;">
+                        <h4>A sequência de cliques seria:</h4>
+                        <ol>
+                            <li>Ir para a aba <strong>Source Control</strong>.</li>
+                            <li>Clicar no ícone <strong>"+"</strong> ao lado do nome da imagem e também do arquivo <code>index.html</code> para prepará-los (stage). Ou, mais fácil, clicar no "+" ao lado do título "Changes" para preparar tudo de uma vez.</li>
+                            <li>Digitar uma mensagem clara na caixa de texto, como "Adiciona imagem do banner e corrige texto na home".</li>
+                            <li>Clicar no botão de <strong>✓ (checkmark)</strong> para fazer o commit.</li>
+                            <li>Clicar no botão de <strong>Sincronizar Alterações</strong> na barra de status azul para enviar o commit para o GitHub.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <section id="quiz" class="quiz-container">
+                <h2>Mini Quiz: Teste seus conhecimentos!</h2>
+                <form id="quiz-form">
+                    <div class="question">
+                        <p>1. O que é um IDE, como o VS Code?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="a"> a) Um tipo especial de terminal.</label>
+                            <label><input type="radio" name="q1" value="b"> b) Um editor de código com ferramentas integradas para facilitar a programação.</label>
+                            <label><input type="radio" name="q1" value="c"> c) Um site para hospedar código, como o GitHub.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="question">
+                        <p>2. Qual é a principal vantagem de usar o Git dentro de um IDE?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="a"> a) Deixa o computador mais rápido.</label>
+                            <label><input type="radio" name="q2" value="b"> b) Oferece uma interface visual que torna as operações mais fáceis e rápidas.</label>
+                            <label><input type="radio" name="q2" value="c"> c) É a única maneira de trabalhar em equipe.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="question">
+                        <p>3. No VS Code, clicar no ícone "+" ao lado de um arquivo modificado é o mesmo que rodar qual comando?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="a"> a) `git commit`</label>
+                            <label><input type="radio" name="q3" value="b"> b) `git push`</label>
+                            <label><input type="radio" name="q3" value="c"> c) `git add`</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="question">
+                        <p>4. Onde você escreve a mensagem de commit na interface do VS Code?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="a"> a) Em um pop-up que aparece depois de clicar em "commit".</label>
+                            <label><input type="radio" name="q4" value="b"> b) Na caixa de texto no topo do painel "Source Control".</label>
+                            <label><input type="radio" name="q4" value="c"> c) Diretamente no arquivo que você modificou.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                     <div class="question">
+                        <p>5. O botão "Sincronizar Alterações" na barra de status do VS Code geralmente executa:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="a"> a) Apenas `git push`.</label>
+                            <label><input type="radio" name="q5" value="b"> b) Um `git pull` seguido de um `git push`.</label>
+                            <label><input type="radio" name="q5" value="c"> c) Apenas `git status`.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                     <div class="question">
+                        <p>6. Se você usar as ferramentas Git do VS Code, você ainda precisa ter o Git instalado no seu computador?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q6" value="a"> a) Não, o VS Code tem sua própria versão do Git.</label>
+                            <label><input type="radio" name="q6" value="b"> b) Sim, o VS Code apenas fornece uma interface para o programa Git que está rodando por baixo dos panos.</label>
+                            <label><input type="radio" name="q6" value="c"> c) Apenas se você usar o terminal do VS Code.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                     <div class="question">
+                        <p>7. O que significa quando um arquivo está na seção "Staged Changes" no VS Code?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q7" value="a"> a) Que o arquivo tem erros.</label>
+                            <label><input type="radio" name="q7" value="b"> b) Que o arquivo foi preparado e será incluído no próximo commit.</label>
+                            <label><input type="radio" name="q7" value="c"> c) Que o arquivo já foi enviado para o GitHub.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                     <div class="question">
+                        <p>8. Qual ícone você clica no VS Code para finalizar a ação de "commit"?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q8" value="a"> a) Um ícone de nuvem.</label>
+                            <label><input type="radio" name="q8" value="b"> b) Um ícone de checkmark (✓).</label>
+                            <label><input type="radio" name="q8" value="c"> c) Um ícone de disquete.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                     <div class="question">
+                        <p>9. Ver linhas verdes ao lado do seu código no VS Code geralmente significa:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q9" value="a"> a) Que aquelas linhas são novas (foram adicionadas desde o último commit).</label>
+                            <label><input type="radio" name="q9" value="b"> b) Que aquelas linhas têm um comentário.</label>
+                            <label><input type="radio" name="q9" value="c"> c) Que aquelas linhas estão corretas e sem erros.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                     <div class="question">
+                        <p>10. O painel principal do Git no VS Code é chamado de:</p>
+                        <div class="options">
+                            <label><input type="radio" name="q10" value="a"> a) Gerenciador de Git</label>
+                            <label><input type="radio" name="q10" value="b"> b) Histórico de Commits</label>
+                            <label><input type="radio" name="q10" value="c"> c) Source Control (Controle do Código-Fonte)</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="quiz-controls">
+                        <button type="button" class="btn" onclick="checkQuiz()">Verificar Respostas</button>
+                        <button type="button" class="btn btn-secondary" id="retake-quiz-btn" onclick="retakeQuiz()">Refazer Quiz</button>
+                    </div>
+                </form>
+                <div id="quiz-result" aria-live="polite"></div>
+            </section>
+        </main>
+        
+        <section id="proximos-passos">
+            <h2>Para ir Além: Extensões Poderosas</h2>
+            <p>A verdadeira força do VS Code está em suas extensões. Para turbinar sua experiência com Git, instale estas duas extensões populares:</p>
+            <ul>
+                <li><strong>GitLens:</strong> Uma extensão superpoderosa que te mostra quem alterou cada linha de código (Git Blame), permite navegar pelo histórico do arquivo e muito mais, tudo diretamente no editor.</li>
+                <li><strong>Git Graph:</strong> Cria uma visualização gráfica e interativa do seu histórico de commits, tornando muito mais fácil entender branches e merges.</li>
+            </ul>
+        </section>
+
+        <div class="page-navigation">
+            <a href="Aula04.html" class="btn btn-secondary">← Aula Anterior</a>
+            <a href="Aula06.html" class="btn">Próxima Aula →</a>
+        </div>
+
+        <footer>
+            <p>Usar a integração Git do seu IDE pode acelerar muito seu trabalho e torná-lo mais intuitivo. Experimente e veja como seu fluxo melhora!</p>
+            <p><strong>Curiosidade:</strong> O Visual Studio Code, apesar do nome, é um projeto de código aberto mantido pela Microsoft e é um dos editores mais populares do mundo, em grande parte por causa de seu incrível ecossistema de extensões.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Definição das respostas corretas para esta aula específica
+        const correctAnswers = {
+            q1: { answer: 'b', explanation: 'Um IDE é um ambiente completo que integra um editor de texto com outras ferramentas de desenvolvimento, como depuradores e controle de versão.' },
+            q2: { answer: 'b', explanation: 'A interface visual (GUI) de um IDE transforma comandos de texto em cliques de botão, tornando o processo mais rápido e intuitivo.' },
+            q3: { answer: 'c', explanation: 'Clicar no "+" ao lado de um arquivo na seção "Changes" o move para a "Staging Area", que é exatamente o que o comando `git add` faz.' },
+            q4: { answer: 'b', explanation: 'A caixa de texto no topo do painel Source Control é o local designado para escrever a mensagem que descreverá o commit.' },
+            q5: { answer: 'b', explanation: 'O botão de sincronização é um atalho poderoso que primeiro baixa as alterações remotas (`pull`) para evitar conflitos e depois envia as suas (`push`).' },
+            q6: { answer: 'b', explanation: 'O IDE atua como uma "casca" ou uma interface amigável para o programa Git, que deve estar instalado e funcionando no sistema operacional.' },
+            q7: { answer: 'b', explanation: '"Staged Changes" é o nome que o VS Code dá para a "Staging Area". Arquivos nesta seção estão prontos para serem incluídos no próximo commit.' },
+            q8: { answer: 'b', explanation: 'O ícone de checkmark (✓) simboliza a confirmação ou aprovação, sendo o botão padrão para confirmar e criar o commit.' },
+            q9: { answer: 'a', explanation: 'O VS Code usa cores na margem para indicar o status das linhas: verde para adicionadas, azul para modificadas e um triângulo vermelho para removidas.' },
+            q10: { answer: 'c', explanation: '"Source Control" (Controle do Código-Fonte) é o termo genérico para ferramentas de versionamento, e é o nome que o VS Code dá à sua aba de integração com o Git.' }
+        };
+    </script>
+    <script src="script.js"></script>
+
+    <button id="back-to-top-btn" title="Voltar ao topo">↑</button>
+
+</body>
+</html>

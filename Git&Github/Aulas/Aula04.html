@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desvendando `git add` e `git commit`</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="progress-bar"></div>
+
+    <div class="container">
+        <header>
+            <h1>Desvendando `git add` e `git commit`: A Dupla Dinâmica</h1>
+            <a href="index.html" id="home-btn" title="Voltar ao início">🏠</a>
+            <button id="theme-toggle" title="Alterar tema"></button>
+        </header>
+
+        <nav id="toc-container" aria-labelledby="toc-heading">
+            <h3 id="toc-heading">Nesta Aula</h3>
+            <ul id="toc-list"></ul>
+        </nav>
+
+        <main>
+            <section id="introducao">
+                <h2>Os dois passos para salvar seu progresso</h2>
+                <p>
+                    No Git, salvar seu trabalho não é um único passo, mas sim um processo de dois estágios. Pense nos comandos <strong>`git add`</strong> e <strong>`git commit`</strong> como uma dupla inseparável. O primeiro comando prepara o que você quer salvar, e o segundo efetivamente salva, criando um ponto seguro na história do seu projeto.
+                </p>
+            </section>
+            
+            <section id="analogia">
+                <h2>A Analogia do Estúdio de Fotografia</h2>
+                <p>Imagine que seu projeto é uma sessão de fotos. Você, o fotógrafo, quer criar um álbum com fotos perfeitas.</p>
+                <div class="analogy">
+                    <ul>
+                        <li><strong>Seu trabalho (arquivos modificados):</strong> São todas as pessoas e objetos no estúdio. Alguns estão prontos, outros ainda estão se arrumando.</li>
+                        <li><strong>`git add` (A Área de Preparação):</strong> É o ato de chamar as pessoas que estão prontas para o "palco" da foto. Você escolhe exatamente quem vai aparecer na imagem.</li>
+                        <li><strong>`git commit` (A Foto):</strong> É o clique da câmera! Você tira uma foto de todos que estão no palco naquele exato momento e a guarda no seu álbum (o histórico do Git), com uma anotação atrás dizendo o que estava acontecendo.</li>
+                        <li><strong>Outra Analogia: O Carrinho de Compras.</strong> Pense nos seus arquivos modificados como os corredores de um supermercado. `git add` é o ato de colocar um item no seu carrinho. Você pode colocar quantos itens quiser. `git commit` é o ato de ir ao caixa e pagar por tudo que está no carrinho de uma vez só.</li>
+                    </ul>
+                </div>
+                <div class="code-example">
+                    <h4>Diagrama do Fluxo de Trabalho</h4>
+                    <pre>1. Arquivos Modificados  ->  2. Staging Area  ->  3. Repositório (.git)
+(Working Directory)       (git add)         (git commit)</pre>
+                    <p>Você modifica os arquivos (1), escolhe quais irão para o próximo save com `git add` (2), e finalmente cria o save permanente com `git commit` (3).</p>
+                </div>
+            </section>
+
+            <section id="git-add">
+                <h2>1. `git add`: Escolhendo o que vai para a foto</h2>
+                <p>Este comando pega as alterações dos seus arquivos de trabalho e as coloca na <strong>"Staging Area"</strong> (Área de Preparação ou Palco). Ele não salva nada permanentemente, apenas seleciona o que será incluído no próximo "save".</p>
+
+                <h3>Seu GPS: `git status`</h3>
+                <p>Antes de adicionar qualquer coisa, seu primeiro reflexo deve ser sempre usar o comando <strong>`git status`</strong>. Ele é o seu "GPS" e te diz exatamente o que está acontecendo:</p>
+                <ul>
+                    <li>Quais arquivos foram modificados mas não estão preparados (em vermelho).</li>
+                    <li>Quais arquivos já estão na Staging Area, prontos para o commit (em verde).</li>
+                </ul>
+
+                <h3>Como usar o `git add`?</h3>
+                
+                <h4>Adicionando um arquivo específico:</h4>
+                <p>Se você só quer adicionar as mudanças de um único arquivo.</p>
+                <pre><span class="command">git add</span> <span class="param">nome-do-arquivo.html</span></pre>
+
+                <h4>Adicionando vários arquivos:</h4>
+                <p>Você pode listar quantos arquivos quiser.</p>
+                <pre><span class="command">git add</span> <span class="param">arquivo1.css arquivo2.js</span></pre>
+
+                <h4>Adicionando TODOS os arquivos modificados na pasta atual:</h4>
+                <p>O ponto `.` é um atalho para "tudo que está aqui". É o mais comum de se usar.</p>
+                <pre><span class="command">git add .</span></pre>
+
+                <h3>Oops, adicionei o arquivo errado! Como reverter?</h3>
+                <p>É muito comum adicionar um arquivo à Staging Area por engano. Para "tirar do palco" (unstage), use o comando <code>git restore --staged</code>. Isso <strong>não</strong> desfaz suas alterações no arquivo, apenas o remove da área de preparação.</p>
+                <pre><span class="comment">-- Remove o arquivo da Staging Area, mas mantém suas modificações</span>
+<span class="command">git restore --staged</span> <span class="param">arquivo-errado.js</span></pre>
+
+                <div class="playground" id="pg-add-status">
+                    <h4>Atividade Prática: O Efeito do `git add`</h4>
+                    <p>Simulamos um `git status` antes e depois de rodar `git add .` em dois arquivos. Clique para ver o resultado.</p>
+                    <pre>Antes:
+  Changes not staged for commit:
+    (use "git add <file>..." to update what will be committed)
+        modified:   index.html
+        modified:   style.css</pre>
+                    <button class="btn" data-output-text="Depois:&#10;  Changes to be committed:&#10;    (use 'git restore --staged <file>...' to unstage)&#10;        modified:   index.html&#10;        modified:   style.css">Rodar `git add .` e `git status`</button>
+                    <div class="output" aria-live="polite"></div>
+                </div>
+            </section>
+            
+            <section id="git-commit">
+                <h2>2. `git commit`: Tirando a foto e guardando no álbum</h2>
+                <p>O comando <code>commit</code> pega tudo que está na Staging Area e cria um "checkpoint" permanente no seu histórico. Cada commit é um ponto seguro para o qual você pode voltar no futuro.</p>
+                
+                <h3>A Anatomia de um Bom Commit</h3>
+                <p>Um commit sempre precisa de uma mensagem, que serve como uma legenda para a sua "foto". A flag <code>-m</code> significa "message".</p>
+                <pre><span class="command">git commit -m</span> <span class="param">"Adiciona a página de contato com formulário"</span></pre>
+
+                <h3>Dicas para Mensagens de Commit Perfeitas:</h3>
+                <ul>
+                    <li><strong>Seja claro e objetivo:</strong> Pense que você (ou um colega) lerá isso daqui a 6 meses.</li>
+                    <li><strong>Use o modo imperativo:</strong> Escreva como se estivesse dando uma ordem. "Adiciona" em vez de "Adicionei", "Corrige" em vez de "Corrigido".</li>
+                    <li><strong>Mantenha a primeira linha curta:</strong> Idealmente, com até 50 caracteres.</li>
+                    <li><strong>Um commit, uma ideia:</strong> Tente fazer commits pequenos e focados. Se você fez 3 coisas diferentes, faça 3 commits diferentes. É mais fácil de entender o histórico depois.</li>
+                </ul>
+
+                <div class="code-example">
+                    <h4>Exemplos de Mensagens de Commit</h4>
+                    <pre><span class="comment"># MENSAGEM RUIM 👎</span>
+git commit -m "mudanças"
+
+<span class="comment"># MENSAGEM BOA 👍</span>
+git commit -m "Adiciona validação de e-mail no formulário de contato"</pre>
+                </ul>
+            </section>
+            
+            <section id="desafio">
+                <h2>Desafio: O Commit Cirúrgico!</h2>
+                <div class="desafio-container">
+                    <p>Você está trabalhando no seu site. Você fez o seguinte:</p>
+                    <ol>
+                        <li>Alterou a cor do cabeçalho no arquivo <code>estilos.css</code>.</li>
+                        <li>Corrigiu um bug no botão de login no arquivo <code>app.js</code>.</li>
+                        <li>Criou um arquivo novo chamado <code>rascunho.txt</code> para anotar ideias, mas ele não deve ir para o projeto final ainda.</li>
+                    </ol>
+                    <p><strong>Sua missão:</strong> Você quer criar um commit <strong>apenas</strong> com a correção do bug do login. Quais seriam os <strong>dois comandos</strong> exatos para isso?</p>
+                    <button onclick="toggleAnswer(this)" class="btn" aria-controls="challenge-answer" aria-expanded="false">Ver Resposta</button>
+                    <div id="challenge-answer" style="display: none;">
+                        <h4>A sequência correta para isolar a mudança seria:</h4>
+                        <ol>
+                            <li><strong><code>git add app.js</code></strong>: Você coloca no "palco" apenas o arquivo com a correção do bug. O <code>estilos.css</code> e o <code>rascunho.txt</code> ficam de fora.</li>
+                            <li><strong><code>git commit -m "Corrige bug no botão de login"</code></strong>: Você tira a foto apenas do que está no palco, criando um commit limpo e focado.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <section id="quiz" class="quiz-container">
+                <h2>Mini Quiz: Teste seu Raciocínio!</h2>
+                <form id="quiz-form">
+                    <div class="question">
+                        <p>1. Você modificou três arquivos: `a.js`, `b.css` e `c.html`. Você quer criar um commit que contenha APENAS as alterações de `a.js` e `c.html`. Qual é a sequência correta de comandos?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q1" value="a"> a) `git add .` seguido de `git commit -m "minhas alterações"`</label>
+                            <label><input type="radio" name="q1" value="b"> b) `git add a.js c.html` seguido de `git commit -m "minhas alterações"`</label>
+                            <label><input type="radio" name="q1" value="c"> c) `git commit -m "minhas alterações"` seguido de `git add a.js c.html`</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="question">
+                        <p>2. O que a "Staging Area" (palco) permite que um desenvolvedor faça, que seria impossível se o `commit` salvasse todas as modificações de uma só vez?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q2" value="a"> a) Ver o histórico de alterações.</label>
+                        <label><input type="radio" name="q2" value="b"> b) Criar commits "atômicos", ou seja, agrupar logicamente pequenas partes de diferentes arquivos em um único save temático.</label>
+                            <label><input type="radio" name="q2" value="c"> c) Enviar arquivos para o GitHub.</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="question">
+                        <p>3. Você roda `git add meu-arquivo.txt` e depois percebe que adicionou o arquivo errado. Qual comando você usaria para "tirar o arquivo do palco" (reverter o `add`) sem perder as modificações que fez nele?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q3" value="a"> a) `git rm meu-arquivo.txt`</label>
+                            <label><input type="radio" name="q3" value="b"> b) `git commit --undo`</label>
+                            <label><input type="radio" name="q3" value="c"> c) `git restore --staged meu-arquivo.txt`</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="question">
+                        <p>4. Qual das seguintes mensagens de commit é a mais eficaz e segue as boas práticas?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q4" value="a"> a) "Consertei umas coisas"</label>
+                            <label><input type="radio" name="q4" value="b"> b) "Adiciona funcionalidade de login de usuário"</label>
+                            <label><input type="radio" name="q4" value="c"> c) "Alterações no arquivo de login e no css"</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                     <div class="question">
+                        <p>5. Se você modificar um arquivo, mas esquecer de usar `git add` nele antes de rodar `git commit`, o que acontecerá com as suas modificações?</p>
+                        <div class="options">
+                            <label><input type="radio" name="q5" value="a"> a) Elas serão incluídas no commit automaticamente.</label>
+                            <label><input type="radio" name="q5" value="b"> b) Elas serão perdidas para sempre.</label>
+                            <label><input type="radio" name="q5" value="c"> c) Elas não serão incluídas no commit e permanecerão como "modificações não preparadas" (not staged).</label>
+                        </div>
+                        <div class="explanation"></div>
+                    </div>
+                    <div class="quiz-controls">
+                        <button type="button" class="btn" onclick="checkQuiz()">Verificar Respostas</button>
+                        <button type="button" class="btn btn-secondary" id="retake-quiz-btn" onclick="retakeQuiz()">Refazer Quiz</button>
+                    </div>
+                </form>
+                <div id="quiz-result" aria-live="polite"></div>
+            </section>
+
+            <section id="proximos-passos">
+                <h2>Para ir Além: O Commit Cirúrgico com `git add -p`</h2>
+                <p>E se você fez duas alterações lógicas diferentes no <strong>mesmo arquivo</strong> e quer separá-las em dois commits? É para isso que serve o modo "patch".</p>
+                <ul>
+                    <li><strong>O que é?</strong> O comando <code>git add -p</code> (ou <code>git add --patch</code>) analisa seu arquivo e te pergunta, trecho por trecho, se você quer adicionar aquela parte específica ao commit.</li>
+                    <li><strong>Como usar?</strong> Simplesmente rode <code>git add -p nome-do-arquivo.js</code>. O Git te guiará por um menu interativo. É uma ferramenta de nível profissional para criar um histórico de commits impecável!</li>
+                </ul>
+            </section>
+        </main>
+
+        <div class="page-navigation">
+            <a href="Aula03.html" class="btn btn-secondary">← Aula Anterior</a>
+            <a href="Aula05.html" class="btn">Próxima Aula →</a>
+        </div>
+
+        <footer>
+            <p>O ciclo `add` -> `commit` é o coração do Git. Pratique-o até se tornar um reflexo e você terá um controle incrível sobre seus projetos!</p>
+            <p><strong>Curiosidade:</strong> O Git foi criado por Linus Torvalds, o mesmo criador do Linux. Ele o desenvolveu em 2005 porque precisava de um sistema melhor para gerenciar o código-fonte do Linux!</p>
+        </footer>
+    </div>
+
+    <script>
+        // Definição das respostas corretas para esta aula específica
+        const correctAnswers = {
+            q1: { answer: 'b', explanation: 'O comando `git add` permite especificar exatamente quais arquivos vão para a "Staging Area". `git add .` adicionaria todos os três, o que não é o desejado neste caso.' },
+            q2: { answer: 'b', explanation: 'A Staging Area é a chave para a criação de commits limpos e lógicos. Você pode modificar 10 arquivos, mas adicionar apenas 2 deles para criar um commit com o tema "Corrige bug de login", por exemplo.' },
+            q3: { answer: 'c', explanation: 'O comando `git restore --staged` é a forma moderna e segura de remover um arquivo da Staging Area, revertendo o `git add`.' },
+            q4: { answer: 'b', explanation: 'Uma boa mensagem de commit é curta, descritiva e usa o verbo no imperativo (como se desse uma ordem). Ela descreve "o que" o commit faz.' },
+            q5: { answer: 'c', explanation: 'O commit só salva o que está na Staging Area. Se você não usou `git add` no arquivo, ele continua no seu diretório de trabalho como modificado, mas não fará parte do "save" (commit).' }
+        };
+    </script>
+    <script src="script.js"></script>
+
+    <button id="back-to-top-btn" title="Voltar ao topo">↑</button>
+
+</body>
+</html>
